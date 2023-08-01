@@ -4,3 +4,15 @@
 .borrrr{
     border-radius: 20px;
 }
+.bg-primary{
+    background-color: blueviolet !important;
+}
+.bg-card{
+    background-color: rgb(1, 46, 40);
+}
+.bg-doc{
+    background-color: rgb(124, 92, 9);
+}
+.bg-channel{
+    background-color: darkblue;
+}
