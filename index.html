@@ -91,10 +91,21 @@
           <h2>مستندات</h2>
         </div>
         <div class="lead">
-          <p class="">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br>توجه: همیشه قبل از کار با کتابخونه آن را آپدیت کنید! <br><code>pip install -U balepy</code></p>
+          <p class="">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br><u>توجه: همیشه قبل از استفاده کتابخونه رو با دستور زیر آپدیت کنید!</u> <br><br><code class="bg-dark text-light p-2 row justify-content-between h6 d-inline-flex" dir="ltr">pip install -U balepy</code></p>
         </div>
-        <div>
-          <a href="#send-message" class="btn btn-primary">Send Message</a>
+        <div class="d-flex flex-row justify-content-center p-2">
+          <p class="h2">متد های کتابخانه:</p>
+          <div>
+          <a href="#send-message" class="btn btn-outline-primary p-1">SendMessage</a>
+          </div>
+
+          <div >
+          <a href="#editMessageText" class="btn btn-outline-primary p-1">EditMessageText</a>
+          </div>
+
+          <div>
+          <a href="#deleteMessage" class="btn btn-outline-primary p-1">DeleteMessage</a>
+          </div>
         </div>
       </div>
     </div>
@@ -102,9 +113,27 @@
       <p class="h2">ارسال پیام</p>
       <p class="lead">برای ارسال پیام سورس زیر را کپی کنید و توضیحات پایین رو بخونید. <br>در خط اول از کتابخونه بله پای کلاس کلاینت رو ایمپورت میکنیم. <br>در خط دوم یک متغیر دلخواه به اسم بات ساختم و کلاس کلاینت رو بهش اختصاص دادم و پارامتر اجباری این کلاس شناسه بات هستش که از بات فادر بله میتونید بگیریدش.<br>در خط سوم از متد ارسال پیام استفاده کردیم که این متد در مجموع ۴ تا پارامتر دارد ولی ۲ تا از آنها اجباری هست.<br>پارامتر های اجباری: چت آیدی شخص مورد نظر - محتوای پیام ارسالی <br>پارامتر سوم: برای ساخت کیبورد ها استفاده میشود که روش ساخت آن هم گفته میشود.<br>پارامتر چهارم: در صورتی که دوست دارید پیام ارسالیتون ریپلای زده بشه روی پیام مورد نظر میتونید از این پارامتر استفاده کنید.</p>
       <pre class="row justify-content-between align-items-left">
-      <code class="language_python bg-dark text-light p-2 dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_message(chat_id , text , reply_markup , reply_to_message_id)</code>
-    </pre>
+      <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_message(chat_id , text ,reply_markup , reply_to_message_id)</code>
+      </pre>
     </div>
+
+    <div id="editMessageText" class="container p-3">
+      <p class="h2">ویرایش پیام</p><br>
+      <p class="lead">برای ویرایش پیام متنی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده را در زیر مشاهده میکنید.</p>
+      <pre class="row justify-content-between align-items-left">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,edit_message_text(chat_id , message_id , text , reply_markup)</code>
+      </pre>
+    </div>
+    
+    <div id="deleteMessage" class="container p-3">
+      <p class="h2">حذف پیام</p>
+      <p class="lead">برای حذف پیامی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده در زیر نشان داده شده است</p>
+      <pre class="row justify-content-between align-item-left">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_message(chat_id , message_id)</code>
+      </pre>
+    </div>
+
+    <div id=""></div>
   </section>
 
 
@@ -129,14 +158,13 @@
   </section>
 
     <br>
-  <section class="bg-primary-subtle ">
+  <section class="bg-primary-subtle">
     <div class="container p-3 h1">
       <h6 class="text-dark"> <i  class="bi bi-megaphone"></i> ما را در شبکه های اجتماعی دنبال کنید!</h6>
       <a href="https://t.me/balepy" class="btn btn btn-outline-primary">
         Telegram <i class="bi bi-telegram"></i></a>
       <a href="https://github.com/OnlyRad" class="btn btn-outline-primary">
         GitHub <i class="bi bi-github"></i></a>
-      <a href="https://rubika.ir/balepy" class="btn btn-outline-primary">Rubika</a>
     </div>
   </div>
   </section>
