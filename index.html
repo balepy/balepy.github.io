@@ -93,18 +93,30 @@
         <div class="lead">
           <p class="">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br><u>توجه: همیشه قبل از استفاده کتابخونه رو با دستور زیر آپدیت کنید!</u> <br><br><code class="bg-dark text-light p-2 row justify-content-between h6 d-inline-flex" dir="ltr">pip install -U balepy</code></p>
         </div>
-        <div class="d-flex flex-row justify-content-center p-2">
+        <div class="justify-content-center p-2">
           <p class="h2">متد های کتابخانه:</p>
-          <div>
-          <a href="#send-message" class="btn btn-outline-primary p-1">SendMessage</a>
+          <div dir="ltr">
+          <a href="#send-message" class="btn">SendMessage</a>
           </div>
 
-          <div >
-          <a href="#editMessageText" class="btn btn-outline-primary p-1">EditMessageText</a>
+          <div dir="ltr">
+          <a href="#editMessageText" class="btn">EditMessageText</a>
           </div>
 
-          <div>
-          <a href="#deleteMessage" class="btn btn-outline-primary p-1">DeleteMessage</a>
+          <div dir="ltr">
+          <a href="#deleteMessage" class="btn">DeleteMessage</a>
+          </div>
+
+          <div dir="ltr">
+            <a href="#get_updates" class="btn">GetUpdates</a>
+          </div>
+
+          <div dir="ltr">
+            <a href="#set_webhook" class="btn">SetWebhook</a>
+          </div>
+
+          <div dir="ltr">
+            <a href="#delete_webhook" class="btn">DeleteWebhook</a>
           </div>
         </div>
       </div>
@@ -130,6 +142,14 @@
       <p class="lead">برای حذف پیامی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده در زیر نشان داده شده است</p>
       <pre class="row justify-content-between align-item-left">
         <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_message(chat_id , message_id)</code>
+      </pre>
+    </div>
+
+    <div id="get_updates">
+      <p class="h2">دریافت آپدیت ها</p>
+      <p class="lead">این سرویس برای گرفتن آپدیت‌ پیام‌های رسیده از طرف کاربر برای بازو استفاده می شود. در زیر یک نمونه از درخواست آپدیت نشان داده شده است.</p>
+      <pre class="row justify-content-between align-item-left">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_updates()</code>
       </pre>
     </div>
 
