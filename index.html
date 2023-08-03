@@ -28,6 +28,9 @@
         <li class="nav-item">
           <a href="#aboutme" class="nav-link">درباره من</a>
         </li>
+        <li class="nav-item">
+          <a href="#socialMedia" class="nav-link">ارتباط با من</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -96,27 +99,39 @@
         <div class="justify-content-center p-2">
           <p class="h2">متد های کتابخانه:</p>
           <div dir="ltr">
-          <a href="#send-message" class="btn">SendMessage</a>
+          <a href="#send-message" class="btn btn-primary p-2 m-2">SendMessage</a>
           </div>
 
           <div dir="ltr">
-          <a href="#editMessageText" class="btn">EditMessageText</a>
+          <a href="#editMessageText" class="btn btn-primary p-2 m-2">EditMessageText</a>
           </div>
 
           <div dir="ltr">
-          <a href="#deleteMessage" class="btn">DeleteMessage</a>
+          <a href="#deleteMessage" class="btn btn-primary p-2 m-2">DeleteMessage</a>
           </div>
 
           <div dir="ltr">
-            <a href="#get_updates" class="btn">GetUpdates</a>
+            <a href="#get_updates" class="btn btn-primary p-2 m-2">GetUpdates</a>
           </div>
 
           <div dir="ltr">
-            <a href="#set_webhook" class="btn">SetWebhook</a>
+            <a href="#set_webhook" class="btn btn-primary p-2 m-2">SetWebhook</a>
           </div>
 
           <div dir="ltr">
-            <a href="#delete_webhook" class="btn">DeleteWebhook</a>
+            <a href="#delete_webhook" class="btn btn-primary p-2 m-2">DeleteWebhook</a>
+          </div>
+
+          <div dir="ltr">
+            <a href="#get_me" class="btn btn-primary p-2 m-2">GetMe</a>
+          </div>
+
+          <div dir="ltr">
+            <a href="#send_photo" class="btn btn-primary p-2 m-2">SendPhoto</a>
+          </div>
+
+          <div dir="ltr">
+            <a href="#send_audio" class="btn btn-primary p-2 m-2">SendAudio</a>
           </div>
         </div>
       </div>
@@ -145,7 +160,7 @@
       </pre>
     </div>
 
-    <div id="get_updates">
+    <div id="get_updates" class="container">
       <p class="h2">دریافت آپدیت ها</p>
       <p class="lead">این سرویس برای گرفتن آپدیت‌ پیام‌های رسیده از طرف کاربر برای بازو استفاده می شود. در زیر یک نمونه از درخواست آپدیت نشان داده شده است.</p>
       <pre class="row justify-content-between align-item-left">
@@ -153,7 +168,45 @@
       </pre>
     </div>
 
-    <div id=""></div>
+    <div id="set_webhook" class="container">
+      <p class="h2">تنظیم وب هوک</p>
+      <p class="lead">از این سرویس استفاده میشود برای تنظیم وب هوک و دریافت آپدیت پیام های رسیده از طرف کاربر از طریق http</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.set_webhook(url)</code>
+      </pre>
+    </div>
+
+    <div id="delete_webhook" class="container">
+      <p class="h2">حذف وب هوک</p>
+      <p class="lead">برای حذف وب هوک تنظیم شده برای بات از این سرویس استفاده میشود.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_webhook</code>
+      </pre>
+    </div>
+
+    <div id="get_me" class="container">
+      <p class="h2">دریافت اطلاعات بات</p>
+      <p class="lead">از طریق این سرویس می توانید اطلاعات پایه ای بات را بدست بیاورید فقط با داشتن توکن بات!</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,get_me()</code>
+      </pre>
+    </div>
+
+    <div id="send_photo" class="container">
+      <p class="h2">ارسال عکس</p>
+      <p class="lead">این متد برای ارسال عکس استفاده میشود.<br>شما به ۳ روش میتونید عکس ارسال کنید.<br>۱- ارسال عکس از سیستم<br>۲- ارسال عکس از طریق لینک آن<br>۳- ارسال عکس با استفاده از آیدی پس از آپلود عکس بر روی سرور بله</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_photo(chat_id , photo , caption , reply_to_message_id)</code>
+      </pre>
+    </div>
+
+    <div id="send_audio" class="container">
+      <p class="h2">ارسال موزیک</p>
+      <p class="lead">این سرویس برای ارسال فایل های صوتی استفاده می‌شود. لازم به ذکر است محدودیت ارسال فایل صوتی برای بات ۱۰۰ مگابایت هست که ممکن است در آینده تغییر کند</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_audio(chat_id , audio , caption , duration , title , reply_to_message_id)</code>
+      </pre>
+    </div>
   </section>
 
 
@@ -178,9 +231,9 @@
   </section>
 
     <br>
-  <section class="bg-primary-subtle">
-    <div class="container p-3 h1">
-      <h6 class="text-dark"> <i  class="bi bi-megaphone"></i> ما را در شبکه های اجتماعی دنبال کنید!</h6>
+  <section id="socialMedia" class="bg-primary-subtle">
+    <div class="container p-3 mb-2 text-center">
+      <p class="text-dark"> <i  class="bi bi-megaphone"></i> ما را در شبکه های اجتماعی دنبال کنید!</p>
       <a href="https://t.me/balepy" class="btn btn btn-outline-primary">
         Telegram <i class="bi bi-telegram"></i></a>
       <a href="https://github.com/OnlyRad" class="btn btn-outline-primary">
