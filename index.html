@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <title>balepy</title>
 </head>
-<body class="p-3 mb-2 bg-light-subtle text-white">
+<body class="p-3 mb-2 text-white">
   <nav class="navbar navbar-expand-md bg-light-subtle py-3">
   
     <div class="container">
@@ -51,7 +51,7 @@
           <a class="btn btn-primary btn-lg" href="#documents">
             <i class="bi bi-book"></i> دیدن مستندات</a>
         </div>
-        <img src="https://s8.uupload.ir/files/img_20230706_161132_7x4d.jpg" class="border border-success-subtle img-fluid rounded w-50 d-none d-sm-block" alt="profile">
+        <img src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="border border-success-subtle img-fluid rounded w-50 d-none d-sm-block" alt="profile">
       </div>
     </div>
   </section>
@@ -61,7 +61,7 @@
       <div class="row">
         <div class="col-md-5 p-2">
           <div class="card bg-card text-light">
-            <div class="card-body text-center">
+            <div class="card-body text-center bg-costomize">
               <div class="h1">
                 <i class="bi bi-chat-left"></i>
               </div>
@@ -78,7 +78,7 @@
                 <i class="bi bi-book"></i>
               </div>
               <p class="card-text">اگر میخوای از کتابخونه استفاده کنی ولی بلد نیستی پس بزن روی دکمه زیر و داکیومنت رو کامل بخون</p>
-              <a href="#documents" class="btn btn-success">دیدن مستندات</a>
+              <a href="#documents" class="btn btn-primary">دیدن مستندات</a>
             </div>
           </div>
         </div>
@@ -96,43 +96,27 @@
         <div class="lead">
           <p class="">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br><u>توجه: همیشه قبل از استفاده کتابخونه رو با دستور زیر آپدیت کنید!</u> <br><br><code class="bg-dark text-light p-2 row justify-content-between h6 d-inline-flex" dir="ltr">pip install -U balepy</code></p>
         </div>
-        <div class="justify-content-center p-2">
-          <p class="h2">متد های کتابخانه:</p>
-          <div dir="ltr">
-          <a href="#send-message" class="btn btn-primary p-2 m-2">SendMessage</a>
-          </div>
 
-          <div dir="ltr">
-          <a href="#editMessageText" class="btn btn-primary p-2 m-2">EditMessageText</a>
-          </div>
+        <div class="dropdown p-3 m-3" data-bs-theme="light">
+          <p class="h1">متد های کتابخانه:</p>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+            دیدن متدها
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+            <li><a class="dropdown-item active" href="#send-message">Send Message</a></li>
+            <li><a class="dropdown-item" href="#editMessageText">Edit Message Text</a></li>
+            <li><a class="dropdown-item" href="#deleteMessage">Delete Message</a></li>
+            <li><a class="dropdown-item" href="#get_updates">Get Updates</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#set_webhook">Set Webhook</a></li>
+            <li><a href="#delete_webhook" class="dropdown-item">Delete Webhook</a></li>
+            <li><a href="#get_me" class="dropdown-item">Get Me</a></li>
+            <li><a href="#send_photo" class="dropdown-item">Send Photo</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="#send_audio" class="dropdown-item">Send Audio</a></li>
+          </ul>
+        </div>
 
-          <div dir="ltr">
-          <a href="#deleteMessage" class="btn btn-primary p-2 m-2">DeleteMessage</a>
-          </div>
-
-          <div dir="ltr">
-            <a href="#get_updates" class="btn btn-primary p-2 m-2">GetUpdates</a>
-          </div>
-
-          <div dir="ltr">
-            <a href="#set_webhook" class="btn btn-primary p-2 m-2">SetWebhook</a>
-          </div>
-
-          <div dir="ltr">
-            <a href="#delete_webhook" class="btn btn-primary p-2 m-2">DeleteWebhook</a>
-          </div>
-
-          <div dir="ltr">
-            <a href="#get_me" class="btn btn-primary p-2 m-2">GetMe</a>
-          </div>
-
-          <div dir="ltr">
-            <a href="#send_photo" class="btn btn-primary p-2 m-2">SendPhoto</a>
-          </div>
-
-          <div dir="ltr">
-            <a href="#send_audio" class="btn btn-primary p-2 m-2">SendAudio</a>
-          </div>
         </div>
       </div>
     </div>
