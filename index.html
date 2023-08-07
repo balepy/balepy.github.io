@@ -114,6 +114,19 @@
             <li><a href="#send_photo" class="dropdown-item">Send Photo</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a href="#send_audio" class="dropdown-item">Send Audio</a></li>
+            <li><a href="#send_document" class="dropdown-item">Send Document</a></li>
+            <li><a href="#send_video" class="dropdown-item">Send Video</a></li>
+            <li><a href="#send_voice" class="dropdown-item">Send Voice</a></li>
+            <li><br class="dropdown-divider"></li>
+            <li><a href="#send_location" class="dropdown-item">Send Location</a></li>
+            <li><a href="#send_contact" class="dropdown-item">Send Cotact</a></li>
+            <li><a href="#get_file" class="dropdown-item">Get File</a></li>
+            <li><a href="#get_chat" class="dropdown-item">Get Chat</a></li>
+            <li><br class="dropdown-divider"></li>
+            <li><a href="#get_chat_adminstrators" class="dropdown-item">Get Chat Admin</a></li>
+            <li><a href="#get_chat_member_count" class="dropdown-item">Get Chat Member Count</a></li>
+            <li><a href="#get_chat_member" class="dropdown-item">Get Chat Member</a></li>
+            <li><a href="#send_invoice" class="dropdown-item">Send Invoice</a></li>
           </ul>
         </div>
 
@@ -172,7 +185,7 @@
       <p class="h2">دریافت اطلاعات بات</p>
       <p class="lead">از طریق این سرویس می توانید اطلاعات پایه ای بات را بدست بیاورید فقط با داشتن توکن بات!</p>
       <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_me()</code>
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,get_me()</code>
       </pre>
     </div>
 
@@ -191,6 +204,94 @@
         <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_audio(chat_id , audio , caption , duration , title , reply_to_message_id)</code>
       </pre>
     </div>
+
+    <div  id="send_document" class="container">
+      <p class="h2">ارسال سند</p>
+      <p class="lead">این سرویس برای ارسال انواع فایل می‌تواند استفاده شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_document(chat_id , document , caption , reply_to_message_id)</code>
+      </pre>
+    </div>
+
+    <div id="send_video" class="container">
+      <p class="h2">ارسال ویدیو</p>
+      <p class="lead">این سرویس برای ارسال فایل‌های ویدیویی استفاده می‌شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_video(chat_id , video , duration , width , height , caption , reply_to_message_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="send_voice">
+      <p class="h2">ارسال پیام صوتی</p>
+      <p class="lead">برای ارسال پیام صوتی استفاده می شود و دارای محدودیت ۵۰ مگابایت برای هر پیام است که ممکن است در آینده تغییر کند.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_voice(chat_id , voice , caption , duration , reply_to_message_id</code>
+      </pre>
+    </div>
+
+    <div class="container" id="send_location">
+      <p class="h2">ارسال لوکیشن(موقعیت جغرافیایی)</p>
+      <p class="lead">برای ارسال موقعیت جغرافیایی روی نقشه استفاده می شود.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_location(chat_id , latitude , longitude , reply_to_message_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="send_contact">
+      <p class="h2">ارسال مخاطب</p>
+      <p class="lead">برای ارسال مخاطب استفاده می شود.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_contact(chat_id , phone_number , first_name , last_name , reply_to_message_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="get_file">
+      <p class="h2">دریافت فایل</p>
+      <p class="lead">برای دریافت فایل میتونید از متد زیر استفاده کنید.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_file(file_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="get_chat">
+      <p class="h2">دریافت چت</p>
+      <p class="lead">برای دریافت چت میتونید از متد زیر استفاده کنید.</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat(chat_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="get_chat_adminstrators">
+      <p class="h2">دریافت ادمین ها</p>
+      <p class="lead">از این سرویس می توان برای نمایش ادمین های یک گروه یا کانال استفاده نمود</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat_administrators(chat_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="get_chat_memeber_count">
+      <p class="h2">دریافت تعداد اعضا</p>
+      <p class="lead">از این سرویس می توان برای نمایش تعداد اعضای یک گروه یا کانال استفاده نمود</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_members_count(chat_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="get_chat_member">
+      <p class="h2">وضعیت اعضا</p>
+      <p class="lead">این سرویس وضعیت اعضای یک گروه یا کانال را مشخص میکند</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_member(chat_id , user_id)</code>
+      </pre>
+    </div>
+
+    <div class="container" id="send_invoice">
+      <p class="h2">درخواست پول</p>
+      <p class="lead">برای ارسال پیام درخواست پول میتوانید از این سرویس استفاده کنید و می توانید از ۳ روش برای دریافت پول استفاده کنید.<br> 1- شماره کارت <br> 2- شماره درگاه و شماره پذیرنده <br> 3- شماره کیف پول بله</p>
+      <pre class="row justify-content-between">
+        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.send_invoice(chat_id , title , description , provider_token , prices)</code>
+      </pre>
+    </div>
   </section>
 
 
@@ -199,7 +300,7 @@
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <div class="col-md">
-          <img src="https://s8.uupload.ir/files/balethon_uvi2.png"  class="border border-success-subtle img-fluid" alt="background">
+          <img src="https://s8.uupload.ir/files/balethon_uvi2.png"  class="img-fluid" alt="background">
         </div>
         <div class="col-md p-3">
           <h2 class="display-6">
