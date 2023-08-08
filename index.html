@@ -9,323 +9,337 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <title>balepy</title>
 </head>
-<body class="p-3 mb-2 text-white">
-  <nav class="navbar navbar-expand-md bg-light-subtle py-3">
-  
-    <div class="container">
-      <a href="https://balepy.github.io" class="navbar-brand display-6">balepy</a>   
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
-
-
-    <div class="collapse navbar-collapse" id="navmenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a href="#documents" class="nav-link">مستندات</a>
-        </li>
-        <li class="nav-item">
-          <a href="#surce" class="nav-link">نمونه</a>
-        </li>
-        <li class="nav-item">
-          <a href="#aboutme" class="nav-link">درباره من</a>
-        </li>
-        <li class="nav-item">
-          <a href="#socialMedia" class="nav-link">ارتباط با من</a>
-        </li>
-      </ul>
-    </div>
+<body class="p-3 mb-2">
+  <div class="loader" dir="ltr">
+    
   </div>
-  </nav>
 
-  <section class="bg-light-subtle text-right text-dark p-lg-0 pt-lg-2">
-    <div class="container">
-      <div class="d-sm-flex align-items-center justify-content-between">
-        <div>
-          <h1 class="display-6 text-decoration-underline">ساخت باتِ بله</h1>
-          <div class="h1 display-6">
-            <span class="text-warning">با زبان پایتون و</span>
-          </div>
-          <div class="h1">
-            <span class="text-success">کتابخانه بله پای</span>
-          </div>
-          <p class="lead">با کتابخانه بله پای و زبان برنامه نویسی پایتون توهم بات خودتو طراحی کن!</p>
-          <a class="btn btn-primary btn-lg" href="#documents">
-            <i class="bi bi-book"></i> دیدن مستندات</a>
-        </div>
-        <img src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="border border-success-subtle img-fluid rounded w-50 d-none d-sm-block" alt="profile">
-      </div>
-    </div>
-  </section>
+  <div class="content">
+      <nav class="navbar navbar-expand-md bg-light-subtle py-3">
+      
+        <div class="container">
+          <a href="https://balepy.github.io" class="navbar-brand display-6">balepy</a>   
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
 
-  <section class="mt-5 p-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 p-2">
-          <div class="card bg-card text-light">
-            <div class="card-body text-center bg-costomize">
-              <div class="h1">
-                <i class="bi bi-chat-left"></i>
-              </div>
-              <p class="card-text">اکر دوست داری به گروه تلگراممون اضافه بشی و راجب کتابخونه کلی حرف بزنی از دکمه ی زیر استفاده کن</p>
-              <a href="https://t.me/balepyGP" class="btn btn-outline-warning">GAP</a>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-md-5 p-2">
-          <div class="card bg-doc text-light text-center">
-            <div class="card-body text-center">
-              <div class="h1">
-                <i class="bi bi-book"></i>
-              </div>
-              <p class="card-text">اگر میخوای از کتابخونه استفاده کنی ولی بلد نیستی پس بزن روی دکمه زیر و داکیومنت رو کامل بخون</p>
-              <a href="#documents" class="btn btn-primary">دیدن مستندات</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="documents" class="p-3 mb-5 bg-primary-subtle text-emphasis-primary text-dark">
-    <div class="container">
-      <div class="row align-items-right justify-content-between">
-        <div class="col-md p-2">
-          <h2>مستندات</h2>
-        </div>
-        <div class="lead">
-          <p class="">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br><u>توجه: همیشه قبل از استفاده کتابخونه رو با دستور زیر آپدیت کنید!</u> <br><br><code class="bg-dark text-light p-2 row justify-content-between h6 d-inline-flex" dir="ltr">pip install -U balepy</code></p>
-        </div>
-
-        <div class="dropdown p-3 m-3" data-bs-theme="light">
-          <p class="h1">متد های کتابخانه:</p>
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
-            دیدن متدها
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
-            <li><a class="dropdown-item active" href="#send-message">Send Message</a></li>
-            <li><a class="dropdown-item" href="#editMessageText">Edit Message Text</a></li>
-            <li><a class="dropdown-item" href="#deleteMessage">Delete Message</a></li>
-            <li><a class="dropdown-item" href="#get_updates">Get Updates</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#set_webhook">Set Webhook</a></li>
-            <li><a href="#delete_webhook" class="dropdown-item">Delete Webhook</a></li>
-            <li><a href="#get_me" class="dropdown-item">Get Me</a></li>
-            <li><a href="#send_photo" class="dropdown-item">Send Photo</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a href="#send_audio" class="dropdown-item">Send Audio</a></li>
-            <li><a href="#send_document" class="dropdown-item">Send Document</a></li>
-            <li><a href="#send_video" class="dropdown-item">Send Video</a></li>
-            <li><a href="#send_voice" class="dropdown-item">Send Voice</a></li>
-            <li><br class="dropdown-divider"></li>
-            <li><a href="#send_location" class="dropdown-item">Send Location</a></li>
-            <li><a href="#send_contact" class="dropdown-item">Send Cotact</a></li>
-            <li><a href="#get_file" class="dropdown-item">Get File</a></li>
-            <li><a href="#get_chat" class="dropdown-item">Get Chat</a></li>
-            <li><br class="dropdown-divider"></li>
-            <li><a href="#get_chat_adminstrators" class="dropdown-item">Get Chat Admin</a></li>
-            <li><a href="#get_chat_member_count" class="dropdown-item">Get Chat Member Count</a></li>
-            <li><a href="#get_chat_member" class="dropdown-item">Get Chat Member</a></li>
-            <li><a href="#send_invoice" class="dropdown-item">Send Invoice</a></li>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="#documents" class="nav-link">مستندات</a>
+            </li>
+            <li class="nav-item">
+              <a href="#surce" class="nav-link">نمونه</a>
+            </li>
+            <li class="nav-item">
+              <a href="#aboutme" class="nav-link">درباره من</a>
+            </li>
+            <li class="nav-item">
+              <a href="#socialMedia" class="nav-link">ارتباط با من</a>
+            </li>
           </ul>
         </div>
+      </div>
+      </nav>
 
+      <section class="bg-light-subtle text-right text-dark p-lg-0 pt-lg-2">
+        <div class="container">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h1 class="display-6 text-decoration-underline">ساخت باتِ بله</h1>
+              <div class="h1 display-6">
+                <span class="text-warning">با زبان پایتون و</span>
+              </div>
+              <div class="h1">
+                <span class="text-success">کتابخانه بله پای</span>
+              </div>
+              <p class="lead">با کتابخانه بله پای و زبان برنامه نویسی پایتون توهم بات خودتو طراحی کن!</p>
+              <a class="btn btn-primary btn-lg" href="#documents">
+                <i class="bi bi-book"></i> دیدن مستندات</a>
+            </div>
+            <img src="https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="border border-success-subtle img-fluid rounded w-50 d-none d-sm-block" alt="profile">
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-5 p-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 p-2">
+              <div class="card bg-card text-light">
+                <div class="card-body text-center bg-costomize">
+                  <div class="h1">
+                    <i class="bi bi-chat-left"></i>
+                  </div>
+                  <p class="card-text">اکر دوست داری به گروه تلگراممون اضافه بشی و راجب کتابخونه کلی حرف بزنی از دکمه ی زیر استفاده کن</p>
+                  <a href="https://t.me/balepyGP" class="btn btn-outline-warning">GAP</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 p-2">
+              <div class="card bg-doc text-light text-center">
+                <div class="card-body text-center">
+                  <div class="h1">
+                    <i class="bi bi-book"></i>
+                  </div>
+                  <p class="card-text">اگر میخوای از کتابخونه استفاده کنی ولی بلد نیستی پس بزن روی دکمه زیر و داکیومنت رو کامل بخون</p>
+                  <a href="#documents" class="btn btn-primary">دیدن مستندات</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="documents" class="p-3 mb-5 bg-primary-subtle text-emphasis-primary text-dark">
+        <div class="container">
+          <div class="row align-items-right justify-content-between">
+            <div class="col-md p-2">
+              <h2>مستندات</h2>
+            </div>
+            <div class="lead">
+              <p class="">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br><u>توجه: همیشه قبل از استفاده کتابخونه رو با دستور زیر آپدیت کنید!</u> <br><br><code class="bg-dark text-light p-2 row justify-content-between h6 d-inline-flex" dir="ltr">pip install -U balepy</code></p>
+            </div>
+
+            <div class="dropdown p-3 m-3" data-bs-theme="light">
+              <p class="h1">متد های کتابخانه:</p>
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight" data-bs-toggle="dropdown" aria-expanded="false">
+                دیدن متدها
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
+                <li><a class="dropdown-item active" href="#send-message">Send Message</a></li>
+                <li><a class="dropdown-item" href="#editMessageText">Edit Message Text</a></li>
+                <li><a class="dropdown-item" href="#deleteMessage">Delete Message</a></li>
+                <li><a class="dropdown-item" href="#get_updates">Get Updates</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#set_webhook">Set Webhook</a></li>
+                <li><a href="#delete_webhook" class="dropdown-item">Delete Webhook</a></li>
+                <li><a href="#get_me" class="dropdown-item">Get Me</a></li>
+                <li><a href="#send_photo" class="dropdown-item">Send Photo</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a href="#send_audio" class="dropdown-item">Send Audio</a></li>
+                <li><a href="#send_document" class="dropdown-item">Send Document</a></li>
+                <li><a href="#send_video" class="dropdown-item">Send Video</a></li>
+                <li><a href="#send_voice" class="dropdown-item">Send Voice</a></li>
+                <li><br class="dropdown-divider"></li>
+                <li><a href="#send_location" class="dropdown-item">Send Location</a></li>
+                <li><a href="#send_contact" class="dropdown-item">Send Cotact</a></li>
+                <li><a href="#get_file" class="dropdown-item">Get File</a></li>
+                <li><a href="#get_chat" class="dropdown-item">Get Chat</a></li>
+                <li><br class="dropdown-divider"></li>
+                <li><a href="#get_chat_adminstrators" class="dropdown-item">Get Chat Admin</a></li>
+                <li><a href="#get_chat_member_count" class="dropdown-item">Get Chat Member Count</a></li>
+                <li><a href="#get_chat_member" class="dropdown-item">Get Chat Member</a></li>
+                <li><a href="#send_invoice" class="dropdown-item">Send Invoice</a></li>
+              </ul>
+            </div>
+
+            </div>
+          </div>
+        </div>
+        <div id="send-message" class="container p-3">
+          <p class="h2">ارسال پیام</p>
+          <p class="lead">برای ارسال پیام سورس زیر را کپی کنید و توضیحات پایین رو بخونید. <br>در خط اول از کتابخونه بله پای کلاس کلاینت رو ایمپورت میکنیم. <br>در خط دوم یک متغیر دلخواه به اسم بات ساختم و کلاس کلاینت رو بهش اختصاص دادم و پارامتر اجباری این کلاس شناسه بات هستش که از بات فادر بله میتونید بگیریدش.<br>در خط سوم از متد ارسال پیام استفاده کردیم که این متد در مجموع ۴ تا پارامتر دارد ولی ۲ تا از آنها اجباری هست.<br>پارامتر های اجباری: چت آیدی شخص مورد نظر - محتوای پیام ارسالی <br>پارامتر سوم: برای ساخت کیبورد ها استفاده میشود که روش ساخت آن هم گفته میشود.<br>پارامتر چهارم: در صورتی که دوست دارید پیام ارسالیتون ریپلای زده بشه روی پیام مورد نظر میتونید از این پارامتر استفاده کنید.</p>
+          <pre class="row justify-content-between align-items-left">
+          <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_message(chat_id , text ,reply_markup , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div id="editMessageText" class="container p-3">
+          <p class="h2">ویرایش پیام</p><br>
+          <p class="lead">برای ویرایش پیام متنی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده را در زیر مشاهده میکنید.</p>
+          <pre class="row justify-content-between align-items-left">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,edit_message_text(chat_id , message_id , text , reply_markup)</code>
+          </pre>
+        </div>
+        
+        <div id="deleteMessage" class="container p-3">
+          <p class="h2">حذف پیام</p>
+          <p class="lead">برای حذف پیامی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده در زیر نشان داده شده است</p>
+          <pre class="row justify-content-between align-item-left">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_message(chat_id , message_id)</code>
+          </pre>
+        </div>
+
+        <div id="get_updates" class="container">
+          <p class="h2">دریافت آپدیت ها</p>
+          <p class="lead">این سرویس برای گرفتن آپدیت‌ پیام‌های رسیده از طرف کاربر برای بازو استفاده می شود. در زیر یک نمونه از درخواست آپدیت نشان داده شده است.</p>
+          <pre class="row justify-content-between align-item-left">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_updates()</code>
+          </pre>
+        </div>
+
+        <div id="set_webhook" class="container">
+          <p class="h2">تنظیم وب هوک</p>
+          <p class="lead">از این سرویس استفاده میشود برای تنظیم وب هوک و دریافت آپدیت پیام های رسیده از طرف کاربر از طریق http</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.set_webhook(url)</code>
+          </pre>
+        </div>
+
+        <div id="delete_webhook" class="container">
+          <p class="h2">حذف وب هوک</p>
+          <p class="lead">برای حذف وب هوک تنظیم شده برای بات از این سرویس استفاده میشود.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_webhook</code>
+          </pre>
+        </div>
+
+        <div id="get_me" class="container">
+          <p class="h2">دریافت اطلاعات بات</p>
+          <p class="lead">از طریق این سرویس می توانید اطلاعات پایه ای بات را بدست بیاورید فقط با داشتن توکن بات!</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,get_me()</code>
+          </pre>
+        </div>
+
+        <div id="send_photo" class="container">
+          <p class="h2">ارسال عکس</p>
+          <p class="lead">این متد برای ارسال عکس استفاده میشود.<br>شما به ۳ روش میتونید عکس ارسال کنید.<br>۱- ارسال عکس از سیستم<br>۲- ارسال عکس از طریق لینک آن<br>۳- ارسال عکس با استفاده از آیدی پس از آپلود عکس بر روی سرور بله</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_photo(chat_id , photo , caption , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div id="send_audio" class="container">
+          <p class="h2">ارسال موزیک</p>
+          <p class="lead">این سرویس برای ارسال فایل های صوتی استفاده می‌شود. لازم به ذکر است محدودیت ارسال فایل صوتی برای بات ۱۰۰ مگابایت هست که ممکن است در آینده تغییر کند</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_audio(chat_id , audio , caption , duration , title , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div  id="send_document" class="container">
+          <p class="h2">ارسال سند</p>
+          <p class="lead">این سرویس برای ارسال انواع فایل می‌تواند استفاده شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_document(chat_id , document , caption , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div id="send_video" class="container">
+          <p class="h2">ارسال ویدیو</p>
+          <p class="lead">این سرویس برای ارسال فایل‌های ویدیویی استفاده می‌شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_video(chat_id , video , duration , width , height , caption , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="send_voice">
+          <p class="h2">ارسال پیام صوتی</p>
+          <p class="lead">برای ارسال پیام صوتی استفاده می شود و دارای محدودیت ۵۰ مگابایت برای هر پیام است که ممکن است در آینده تغییر کند.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_voice(chat_id , voice , caption , duration , reply_to_message_id</code>
+          </pre>
+        </div>
+
+        <div class="container" id="send_location">
+          <p class="h2">ارسال لوکیشن(موقعیت جغرافیایی)</p>
+          <p class="lead">برای ارسال موقعیت جغرافیایی روی نقشه استفاده می شود.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_location(chat_id , latitude , longitude , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="send_contact">
+          <p class="h2">ارسال مخاطب</p>
+          <p class="lead">برای ارسال مخاطب استفاده می شود.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_contact(chat_id , phone_number , first_name , last_name , reply_to_message_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="get_file">
+          <p class="h2">دریافت فایل</p>
+          <p class="lead">برای دریافت فایل میتونید از متد زیر استفاده کنید.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_file(file_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="get_chat">
+          <p class="h2">دریافت چت</p>
+          <p class="lead">برای دریافت چت میتونید از متد زیر استفاده کنید.</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat(chat_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="get_chat_adminstrators">
+          <p class="h2">دریافت ادمین ها</p>
+          <p class="lead">از این سرویس می توان برای نمایش ادمین های یک گروه یا کانال استفاده نمود</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat_administrators(chat_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="get_chat_memeber_count">
+          <p class="h2">دریافت تعداد اعضا</p>
+          <p class="lead">از این سرویس می توان برای نمایش تعداد اعضای یک گروه یا کانال استفاده نمود</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_members_count(chat_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="get_chat_member">
+          <p class="h2">وضعیت اعضا</p>
+          <p class="lead">این سرویس وضعیت اعضای یک گروه یا کانال را مشخص میکند</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_member(chat_id , user_id)</code>
+          </pre>
+        </div>
+
+        <div class="container" id="send_invoice">
+          <p class="h2">درخواست پول</p>
+          <p class="lead">برای ارسال پیام درخواست پول میتوانید از این سرویس استفاده کنید و می توانید از ۳ روش برای دریافت پول استفاده کنید.<br> 1- شماره کارت <br> 2- شماره درگاه و شماره پذیرنده <br> 3- شماره کیف پول بله</p>
+          <pre class="row justify-content-between">
+            <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.send_invoice(chat_id , title , description , provider_token , prices)</code>
+          </pre>
+        </div>
+      </section>
+
+
+
+      <section id="aboutme" class="bg-primary text-light">
+        <div class="container">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+              <img src="https://s8.uupload.ir/files/balethon_uvi2.png"  class="img-fluid" alt="background">
+            </div>
+            <div class="col-md p-3">
+              <h2 class="display-6">
+                درباره من
+              </h2>
+              <p class="lead">سلام دوست خوبه من!<br>خوشحالم که از کتابخانه من جهت ساخت بات بله استفاده میکنی.<br>برای دیدن بیوگرافی من میتونی به صفحه کیت هابم که لینکشو پایین صفحه گذاشتم استفاده کنی (:<br>و اگر در سایت یا داکیومنت مشکلی دیدید میتونید به تلگرام من پیام بدید(لینکش آخر صفحه)</p>
+              <a href="#documents" class="btn btn-light">
+                <i class="bi bi-journal"></i> خواندن داکیومنت
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+        <br>
+      <section id="socialMedia" class="bg-primary-subtle">
+        <div class="container p-3 mb-2 text-center">
+          <p class="text-dark"> <i  class="bi bi-megaphone"></i> ما را در شبکه های اجتماعی دنبال کنید!</p>
+          <a href="https://t.me/balepy" class="btn btn btn-outline-primary">
+            Telegram <i class="bi bi-telegram"></i></a>
+          <a href="https://github.com/OnlyRad" class="btn btn-outline-primary">
+            GitHub <i class="bi bi-github"></i></a>
         </div>
       </div>
-    </div>
-    <div id="send-message" class="container p-3">
-      <p class="h2">ارسال پیام</p>
-      <p class="lead">برای ارسال پیام سورس زیر را کپی کنید و توضیحات پایین رو بخونید. <br>در خط اول از کتابخونه بله پای کلاس کلاینت رو ایمپورت میکنیم. <br>در خط دوم یک متغیر دلخواه به اسم بات ساختم و کلاس کلاینت رو بهش اختصاص دادم و پارامتر اجباری این کلاس شناسه بات هستش که از بات فادر بله میتونید بگیریدش.<br>در خط سوم از متد ارسال پیام استفاده کردیم که این متد در مجموع ۴ تا پارامتر دارد ولی ۲ تا از آنها اجباری هست.<br>پارامتر های اجباری: چت آیدی شخص مورد نظر - محتوای پیام ارسالی <br>پارامتر سوم: برای ساخت کیبورد ها استفاده میشود که روش ساخت آن هم گفته میشود.<br>پارامتر چهارم: در صورتی که دوست دارید پیام ارسالیتون ریپلای زده بشه روی پیام مورد نظر میتونید از این پارامتر استفاده کنید.</p>
-      <pre class="row justify-content-between align-items-left">
-      <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_message(chat_id , text ,reply_markup , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div id="editMessageText" class="container p-3">
-      <p class="h2">ویرایش پیام</p><br>
-      <p class="lead">برای ویرایش پیام متنی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده را در زیر مشاهده میکنید.</p>
-      <pre class="row justify-content-between align-items-left">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,edit_message_text(chat_id , message_id , text , reply_markup)</code>
-      </pre>
-    </div>
-    
-    <div id="deleteMessage" class="container p-3">
-      <p class="h2">حذف پیام</p>
-      <p class="lead">برای حذف پیامی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده در زیر نشان داده شده است</p>
-      <pre class="row justify-content-between align-item-left">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_message(chat_id , message_id)</code>
-      </pre>
-    </div>
-
-    <div id="get_updates" class="container">
-      <p class="h2">دریافت آپدیت ها</p>
-      <p class="lead">این سرویس برای گرفتن آپدیت‌ پیام‌های رسیده از طرف کاربر برای بازو استفاده می شود. در زیر یک نمونه از درخواست آپدیت نشان داده شده است.</p>
-      <pre class="row justify-content-between align-item-left">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_updates()</code>
-      </pre>
-    </div>
-
-    <div id="set_webhook" class="container">
-      <p class="h2">تنظیم وب هوک</p>
-      <p class="lead">از این سرویس استفاده میشود برای تنظیم وب هوک و دریافت آپدیت پیام های رسیده از طرف کاربر از طریق http</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.set_webhook(url)</code>
-      </pre>
-    </div>
-
-    <div id="delete_webhook" class="container">
-      <p class="h2">حذف وب هوک</p>
-      <p class="lead">برای حذف وب هوک تنظیم شده برای بات از این سرویس استفاده میشود.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_webhook</code>
-      </pre>
-    </div>
-
-    <div id="get_me" class="container">
-      <p class="h2">دریافت اطلاعات بات</p>
-      <p class="lead">از طریق این سرویس می توانید اطلاعات پایه ای بات را بدست بیاورید فقط با داشتن توکن بات!</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,get_me()</code>
-      </pre>
-    </div>
-
-    <div id="send_photo" class="container">
-      <p class="h2">ارسال عکس</p>
-      <p class="lead">این متد برای ارسال عکس استفاده میشود.<br>شما به ۳ روش میتونید عکس ارسال کنید.<br>۱- ارسال عکس از سیستم<br>۲- ارسال عکس از طریق لینک آن<br>۳- ارسال عکس با استفاده از آیدی پس از آپلود عکس بر روی سرور بله</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_photo(chat_id , photo , caption , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div id="send_audio" class="container">
-      <p class="h2">ارسال موزیک</p>
-      <p class="lead">این سرویس برای ارسال فایل های صوتی استفاده می‌شود. لازم به ذکر است محدودیت ارسال فایل صوتی برای بات ۱۰۰ مگابایت هست که ممکن است در آینده تغییر کند</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_audio(chat_id , audio , caption , duration , title , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div  id="send_document" class="container">
-      <p class="h2">ارسال سند</p>
-      <p class="lead">این سرویس برای ارسال انواع فایل می‌تواند استفاده شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_document(chat_id , document , caption , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div id="send_video" class="container">
-      <p class="h2">ارسال ویدیو</p>
-      <p class="lead">این سرویس برای ارسال فایل‌های ویدیویی استفاده می‌شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_video(chat_id , video , duration , width , height , caption , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="send_voice">
-      <p class="h2">ارسال پیام صوتی</p>
-      <p class="lead">برای ارسال پیام صوتی استفاده می شود و دارای محدودیت ۵۰ مگابایت برای هر پیام است که ممکن است در آینده تغییر کند.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_voice(chat_id , voice , caption , duration , reply_to_message_id</code>
-      </pre>
-    </div>
-
-    <div class="container" id="send_location">
-      <p class="h2">ارسال لوکیشن(موقعیت جغرافیایی)</p>
-      <p class="lead">برای ارسال موقعیت جغرافیایی روی نقشه استفاده می شود.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_location(chat_id , latitude , longitude , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="send_contact">
-      <p class="h2">ارسال مخاطب</p>
-      <p class="lead">برای ارسال مخاطب استفاده می شود.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_contact(chat_id , phone_number , first_name , last_name , reply_to_message_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="get_file">
-      <p class="h2">دریافت فایل</p>
-      <p class="lead">برای دریافت فایل میتونید از متد زیر استفاده کنید.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_file(file_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="get_chat">
-      <p class="h2">دریافت چت</p>
-      <p class="lead">برای دریافت چت میتونید از متد زیر استفاده کنید.</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat(chat_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="get_chat_adminstrators">
-      <p class="h2">دریافت ادمین ها</p>
-      <p class="lead">از این سرویس می توان برای نمایش ادمین های یک گروه یا کانال استفاده نمود</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat_administrators(chat_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="get_chat_memeber_count">
-      <p class="h2">دریافت تعداد اعضا</p>
-      <p class="lead">از این سرویس می توان برای نمایش تعداد اعضای یک گروه یا کانال استفاده نمود</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_members_count(chat_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="get_chat_member">
-      <p class="h2">وضعیت اعضا</p>
-      <p class="lead">این سرویس وضعیت اعضای یک گروه یا کانال را مشخص میکند</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_member(chat_id , user_id)</code>
-      </pre>
-    </div>
-
-    <div class="container" id="send_invoice">
-      <p class="h2">درخواست پول</p>
-      <p class="lead">برای ارسال پیام درخواست پول میتوانید از این سرویس استفاده کنید و می توانید از ۳ روش برای دریافت پول استفاده کنید.<br> 1- شماره کارت <br> 2- شماره درگاه و شماره پذیرنده <br> 3- شماره کیف پول بله</p>
-      <pre class="row justify-content-between">
-        <code class="language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.send_invoice(chat_id , title , description , provider_token , prices)</code>
-      </pre>
-    </div>
-  </section>
-
-
-
-  <section id="aboutme" class="bg-primary text-light">
-    <div class="container">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-md">
-          <img src="https://s8.uupload.ir/files/balethon_uvi2.png"  class="img-fluid" alt="background">
-        </div>
-        <div class="col-md p-3">
-          <h2 class="display-6">
-            درباره من
-          </h2>
-          <p class="lead">سلام دوست خوبه من!<br>خوشحالم که از کتابخانه من جهت ساخت بات بله استفاده میکنی.<br>برای دیدن بیوگرافی من میتونی به صفحه کیت هابم که لینکشو پایین صفحه گذاشتم استفاده کنی (:<br>و اگر در سایت یا داکیومنت مشکلی دیدید میتونید به تلگرام من پیام بدید(لینکش آخر صفحه)</p>
-          <a href="#documents" class="btn btn-light">
-            <i class="bi bi-journal"></i> خواندن داکیومنت
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-    <br>
-  <section id="socialMedia" class="bg-primary-subtle">
-    <div class="container p-3 mb-2 text-center">
-      <p class="text-dark"> <i  class="bi bi-megaphone"></i> ما را در شبکه های اجتماعی دنبال کنید!</p>
-      <a href="https://t.me/balepy" class="btn btn btn-outline-primary">
-        Telegram <i class="bi bi-telegram"></i></a>
-      <a href="https://github.com/OnlyRad" class="btn btn-outline-primary">
-        GitHub <i class="bi bi-github"></i></a>
-    </div>
+      </section>
   </div>
-  </section>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script>
+    $(function() {
+      $(".loader").fadeOut(3000 , function() {
+        $(".content").fadeIn(500);
+      });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 </body>
