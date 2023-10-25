@@ -1,0 +1,45 @@
+.en {
+font-family: "ubuntu";
+}
+  
+.fonts{
+font-family: "vazir";
+}
+
+.boreder-radios{
+border-radius: 20px;
+}
+.borrrr{
+border-radius: 20px;
+}
+.bg-primary{
+background-color: blueviolet !important;
+}
+.bg-card{
+background-color: rgb(1, 46, 40);
+}
+.bg-doc{
+background-color: rgb(0, 105, 97);
+}
+.bg-channel{
+background-color: darkblue;
+}
+.bg-costomize{
+background-color: rgb(78, 0, 97);
+}
+.content{
+display: none;
+}
+
+@font-face {
+	font-family: "vazir";
+	src: url("../fonts/vazir.ttf");
+}
+@font-face {
+	font-family: "vazirb";
+	src: url("../fonts/vazir_black.ttf");
+}
+@font-face {
+	font-family: "ubuntu";
+	src: url("../fonts/ubuntu.ttf");
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    <link rel="stylesheet" href="style/docs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="">
+
+    </div>
+    <section class="bg-dark text-light">
+        <div id="send-message" class="container p-3">
+            <p class="fonts h2">ارسال پیام</p>
+            <p class="fonts lead">برای ارسال پیام سورس زیر را کپی کنید و توضیحات پایین رو بخونید. <br>در خط اول از کتابخونه بله پای کلاس کلاینت رو ایمپورت میکنیم. <br>در خط دوم یک متغیر دلخواه به اسم بات ساختم و کلاس کلاینت رو بهش اختصاص دادم و پارامتر اجباری این کلاس شناسه بات هستش که از بات فادر بله میتونید بگیریدش.<br>در خط سوم از متد ارسال پیام استفاده کردیم که این متد در مجموع ۴ تا پارامتر دارد ولی ۲ تا از آنها اجباری هست.<br>پارامتر های اجباری: چت آیدی شخص مورد نظر - محتوای پیام ارسالی <br>پارامتر سوم: برای ساخت کیبورد ها استفاده میشود که روش ساخت آن هم گفته میشود.<br>پارامتر چهارم: در صورتی که دوست دارید پیام ارسالیتون ریپلای زده بشه روی پیام مورد نظر میتونید از این پارامتر استفاده کنید.</p>
+            <pre class="row justify-content-between align-items-left">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_message(chat_id , text ,reply_markup , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div id="editMessageText" class="container p-3">
+            <p class="fonts h2">ویرایش پیام</p><br>
+            <p class="fonts lead">برای ویرایش پیام متنی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده را در زیر مشاهده میکنید.</p>
+            <pre class="row justify-content-between align-items-left">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,edit_message_text(chat_id , message_id , text , reply_markup)</code>
+            </pre>
+        </div>
+        
+        <div id="deleteMessage" class="container p-3">
+            <p class="fonts h2">حذف پیام</p>
+            <p class="fonts lead">برای حذف پیامی که قبلا از طریق بات ارسال کرده‌اید می‌توانید از این سرویس استفاده کنید. یک مثال ساده در زیر نشان داده شده است</p>
+            <pre class="row justify-content-between align-item-left">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_message(chat_id , message_id)</code>
+            </pre>
+        </div>
+
+        <div id="get_updates" class="container">
+            <p class="fonts h2">دریافت آپدیت ها</p>
+            <p class="fonts lead">این سرویس برای گرفتن آپدیت‌ پیام‌های رسیده از طرف کاربر برای بازو استفاده می شود. در زیر یک نمونه از درخواست آپدیت نشان داده شده است.</p>
+            <pre class="row justify-content-between align-item-left">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_updates()</code>
+            </pre>
+        </div>
+
+        <div id="set_webhook" class="container">
+            <p class="fonts h2">تنظیم وب هوک</p>
+            <p class="fonts lead">از این سرویس استفاده میشود برای تنظیم وب هوک و دریافت آپدیت پیام های رسیده از طرف کاربر از طریق http</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.set_webhook(url)</code>
+            </pre>
+        </div>
+
+        <div id="delete_webhook" class="container">
+            <p class="fonts h2">حذف وب هوک</p>
+            <p class="fonts lead">برای حذف وب هوک تنظیم شده برای بات از این سرویس استفاده میشود.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.delete_webhook</code>
+            </pre>
+        </div>
+
+        <div id="get_me" class="container">
+            <p class="fonts h2">دریافت اطلاعات بات</p>
+            <p class="fonts lead">از طریق این سرویس می توانید اطلاعات پایه ای بات را بدست بیاورید فقط با داشتن توکن بات!</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot,get_me()</code>
+            </pre>
+        </div>
+
+        <div id="send_photo" class="container">
+            <p class="fonts h2">ارسال عکس</p>
+            <p class="fonts lead">این متد برای ارسال عکس استفاده میشود.<br>شما به ۳ روش میتونید عکس ارسال کنید.<br>۱- ارسال عکس از سیستم<br>۲- ارسال عکس از طریق لینک آن<br>۳- ارسال عکس با استفاده از آیدی پس از آپلود عکس بر روی سرور بله</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_photo(chat_id , photo , caption , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div id="send_audio" class="container">
+            <p class="fonts h2">ارسال موزیک</p>
+            <p class="fonts lead">این سرویس برای ارسال فایل های صوتی استفاده می‌شود. لازم به ذکر است محدودیت ارسال فایل صوتی برای بات ۱۰۰ مگابایت هست که ممکن است در آینده تغییر کند</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_audio(chat_id , audio , caption , duration , title , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div  id="send_document" class="container">
+            <p class="fonts h2">ارسال سند</p>
+            <p class="fonts lead">این سرویس برای ارسال انواع فایل می‌تواند استفاده شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_document(chat_id , document , caption , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div id="send_video" class="container">
+            <p class="fonts h2">ارسال ویدیو</p>
+            <p class="fonts lead">این سرویس برای ارسال فایل‌های ویدیویی استفاده می‌شود که دارای محدودیت حجم ۵۰ مگابایت برای هر فایل است که ممکن است در آینده تغییر کند.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_video(chat_id , video , duration , width , height , caption , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="send_voice">
+            <p class="fonts h2">ارسال پیام صوتی</p>
+            <p class="fonts lead">برای ارسال پیام صوتی استفاده می شود و دارای محدودیت ۵۰ مگابایت برای هر پیام است که ممکن است در آینده تغییر کند.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_voice(chat_id , voice , caption , duration , reply_to_message_id</code>
+            </pre>
+        </div>
+
+        <div class="container" id="send_location">
+            <p class="fonts h2">ارسال لوکیشن(موقعیت جغرافیایی)</p>
+            <p class="fonts lead">برای ارسال موقعیت جغرافیایی روی نقشه استفاده می شود.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_location(chat_id , latitude , longitude , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="send_contact">
+            <p class="h2">ارسال مخاطب</p>
+            <p class="lead">برای ارسال مخاطب استفاده می شود.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.send_contact(chat_id , phone_number , first_name , last_name , reply_to_message_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="get_file">
+            <p class="fonts h2">دریافت فایل</p>
+            <p class="fonts lead">برای دریافت فایل میتونید از متد زیر استفاده کنید.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_file(file_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="get_chat">
+            <p class="fonts h2">دریافت چت</p>
+            <p class="fonts lead">برای دریافت چت میتونید از متد زیر استفاده کنید.</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat(chat_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="get_chat_adminstrators">
+            <p class="fonts h2">دریافت ادمین ها</p>
+            <p class="fonts lead">از این سرویس می توان برای نمایش ادمین های یک گروه یا کانال استفاده نمود</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client("AUTH")<br>bot.get_chat_administrators(chat_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="get_chat_memeber_count">
+            <p class="fonts h2">دریافت تعداد اعضا</p>
+            <p class="fonts lead">از این سرویس می توان برای نمایش تعداد اعضای یک گروه یا کانال استفاده نمود</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_members_count(chat_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="get_chat_member">
+            <p class="fonts h2">وضعیت اعضا</p>
+            <p class="fonts lead">این سرویس وضعیت اعضای یک گروه یا کانال را مشخص میکند</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.get_chat_member(chat_id , user_id)</code>
+            </pre>
+        </div>
+
+        <div class="container" id="send_invoice">
+            <p class="fonts h2">درخواست پول</p>
+            <p class="fonts lead">برای ارسال پیام درخواست پول میتوانید از این سرویس استفاده کنید و می توانید از ۳ روش برای دریافت پول استفاده کنید.<br> 1- شماره کارت <br> 2- شماره درگاه و شماره پذیرنده <br> 3- شماره کیف پول بله</p>
+            <pre class="row justify-content-between">
+            <code class="en language_python bg-dark text-light overflow-y-scroll" dir="ltr">from balepy import Client<br>bot = Client('AUTH')<br>bot.send_invoice(chat_id , title , description , provider_token , prices)</code>
+            </pre>
+        </div>
+    </section>
+</body>
+</html>
