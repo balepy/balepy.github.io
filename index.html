@@ -1,140 +1,2290 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="icon" href="https://s8.uupload.ir/files/balethon_uvi2.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <title>balepy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balepy — مستندات کتابخانه</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g0: #000000;
+  --g1: #050f05;
+  --g2: #091209;
+  --g3: #0d1a0d;
+  --g4: #112211;
+  --green-dim: #1a3a1a;
+  --green-mid: #22c55e;
+  --green-bright: #4ade80;
+  --green-glow: #86efac;
+  --green-neon: #00ff88;
+  --green-shadow: rgba(34, 197, 94, 0.15);
+  --green-shadow2: rgba(34, 197, 94, 0.08);
+  --text-main: #e2ffe2;
+  --text-sub: #a3d9a3;
+  --text-dim: #5a9a5a;
+  --border: rgba(34, 197, 94, 0.2);
+  --border-bright: rgba(34, 197, 94, 0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--g0);
+  color: var(--text-main);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--g1); }
+::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green-mid); }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ── AMBIENT GLOW BLOBS ── */
+.blob {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(120px); opacity: 0.07;
+  animation: floatBlob 12s ease-in-out infinite;
+}
+.blob1 { width: 600px; height: 600px; background: var(--green-mid); top: -200px; right: -200px; animation-delay: 0s; }
+.blob2 { width: 400px; height: 400px; background: var(--green-neon); bottom: 10%; left: -150px; animation-delay: 4s; }
+.blob3 { width: 300px; height: 300px; background: var(--green-bright); top: 50%; right: 20%; animation-delay: 8s; }
+
+@keyframes floatBlob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.05); }
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
+  background: rgba(5, 15, 5, 0.96);
+  border-left: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  z-index: 100; overflow-y: auto; padding: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-header {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: rgba(5, 15, 5, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 10;
+}
+
+.sidebar-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-neon));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; font-weight: 700; color: #000;
+  box-shadow: 0 0 20px rgba(34,197,94,0.4);
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(34,197,94,0.4); }
+  50% { box-shadow: 0 0 35px rgba(34,197,94,0.7), 0 0 60px rgba(34,197,94,0.2); }
+}
+
+.logo-text { font-size: 20px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+.logo-version { font-size: 11px; color: var(--green-mid); font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+
+.sidebar-search {
+  margin: 16px 16px 0;
+}
+
+.search-input {
+  width: 100%; padding: 8px 14px; 
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text-main); font-family: 'Vazirmatn', sans-serif;
+  font-size: 13px; outline: none; transition: all 0.2s;
+  direction: rtl;
+}
+
+.search-input:focus {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.1);
+}
+
+.search-input::placeholder { color: var(--text-dim); }
+
+.nav-section { padding: 12px 0; }
+
+.nav-section-title {
+  padding: 8px 24px 4px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-dim);
+}
+
+.nav-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 24px; text-decoration: none;
+  color: var(--text-sub); font-size: 13px; font-weight: 400;
+  transition: all 0.15s; position: relative;
+  border-left: 2px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--green-bright); background: var(--green-shadow2);
+  border-right: 2px solid var(--green-mid);
+}
+
+.nav-link.active {
+  color: var(--green-bright);
+  background: var(--green-shadow);
+  border-right: 2px solid var(--green-neon);
+  font-weight: 500;
+}
+
+.nav-badge {
+  margin-right: auto;
+  font-size: 10px; padding: 1px 6px;
+  background: var(--green-dim); color: var(--green-bright);
+  border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── MAIN CONTENT ── */
+#main {
+  margin-right: 280px;
+  padding: 0 0 80px 0;
+  position: relative; z-index: 1;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 80px 60px 70px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,197,94,0.08) 0%, transparent 70%);
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px; border: 1px solid var(--border-bright);
+  border-radius: 999px; font-size: 12px; color: var(--green-mid);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 24px;
+  animation: fadeSlideDown 0.6s ease both;
+}
+
+.hero-dot { width: 6px; height: 6px; background: var(--green-neon); border-radius: 50%; animation: blink 1.5s ease-in-out infinite; }
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+.hero h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800; line-height: 1.1;
+  background: linear-gradient(135deg, var(--text-main) 0%, var(--green-bright) 50%, var(--green-neon) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  animation: fadeSlideDown 0.6s 0.1s ease both;
+}
+
+.hero-sub {
+  font-size: 17px; color: var(--text-sub); max-width: 600px;
+  animation: fadeSlideDown 0.6s 0.2s ease both;
+  margin-bottom: 32px;
+}
+
+.hero-install {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 12px 20px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer;
+  animation: fadeSlideDown 0.6s 0.3s ease both;
+  transition: all 0.2s;
+}
+
+.hero-install:hover { border-color: var(--green-mid); box-shadow: 0 0 20px var(--green-shadow); }
+.hero-install code { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--green-bright); }
+.copy-btn { font-size: 12px; color: var(--text-dim); padding: 3px 8px; background: var(--g4); border-radius: 5px; transition: all 0.2s; cursor: pointer; border: 1px solid var(--border); }
+.copy-btn:hover { color: var(--green-mid); border-color: var(--green-mid); }
+
+.hero-badges {
+  display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;
+  animation: fadeSlideDown 0.6s 0.4s ease both;
+}
+
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 999px;
+  font-size: 12px; font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+}
+
+.badge-green { border-color: var(--green-mid); color: var(--green-bright); background: rgba(34,197,94,0.05); }
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CONTENT SECTIONS ── */
+.content-section {
+  padding: 56px 60px;
+  border-bottom: 1px solid var(--border);
+  animation: sectionFade 0.5s ease both;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.content-section.visible { opacity: 1; }
+
+.section-anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+.section-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--green-mid);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+}
+
+.section-tag::before {
+  content: ''; display: inline-block; width: 20px; height: 1px;
+  background: var(--green-mid);
+}
+
+.section-title {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700; color: var(--text-main);
+  margin-bottom: 16px; letter-spacing: -0.5px;
+}
+
+.section-desc { color: var(--text-sub); font-size: 15px; max-width: 700px; margin-bottom: 32px; }
+
+/* ── CODE BLOCKS ── */
+.code-wrap {
+  background: var(--g2); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  margin: 20px 0;
+  transition: border-color 0.2s;
+  animation: codeAppear 0.4s ease both;
+}
+
+.code-wrap:hover { border-color: var(--border-bright); }
+
+@keyframes codeAppear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.code-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--g3); border-bottom: 1px solid var(--border);
+}
+
+.code-lang {
+  font-size: 11px; font-family: 'JetBrains Mono', monospace;
+  color: var(--green-mid); font-weight: 600; letter-spacing: 0.5px;
+}
+
+.code-copy {
+  font-size: 11px; padding: 3px 10px; background: var(--g4);
+  border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text-dim); cursor: pointer; font-family: 'Vazirmatn', sans-serif;
+  transition: all 0.2s;
+}
+
+.code-copy:hover { color: var(--green-mid); border-color: var(--green-mid); }
+.code-copy.copied { color: var(--green-neon); border-color: var(--green-neon); }
+
+pre {
+  padding: 20px 20px;
+  overflow-x: auto; font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.7; direction: ltr; text-align: left;
+}
+
+/* Syntax highlighting */
+.kw { color: #86efac; font-weight: 600; }  /* keywords */
+.fn { color: #4ade80; }                     /* functions */
+.st { color: #fde68a; }                     /* strings */
+.cm { color: #5a9a5a; font-style: italic; } /* comments */
+.tp { color: #93c5fd; }                     /* types */
+.nx { color: #e2ffe2; }                     /* names */
+.nu { color: #f9a8d4; }                     /* numbers */
+.op { color: #22c55e; }                     /* operators */
+.de { color: var(--green-neon); }           /* decorators */
+.pm { color: #d4d4d4; }                     /* params */
+
+/* ── METHOD CARDS ── */
+.methods-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px; margin: 24px 0;
+}
+
+.method-card {
+  background: var(--g2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  cursor: pointer; transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+
+.method-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--green-mid); opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.method-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--green-shadow);
+}
+
+.method-card:hover::before { opacity: 1; }
+
+.method-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; font-weight: 600;
+  color: var(--green-bright); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.method-name .async-badge {
+  font-size: 10px; padding: 1px 6px;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid var(--border);
+  border-radius: 4px; color: var(--green-mid);
+}
+
+.method-desc { font-size: 13px; color: var(--text-sub); margin-bottom: 12px; }
+
+.method-params {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+.param-chip {
+  font-size: 11px; padding: 2px 8px;
+  background: var(--g4); border: 1px solid var(--border);
+  border-radius: 5px; font-family: 'JetBrains Mono', monospace;
+  color: var(--text-sub);
+}
+
+.param-chip.required { border-color: rgba(34,197,94,0.3); color: var(--green-bright); }
+
+/* ── METHOD DETAIL ── */
+.method-detail {
+  background: var(--g2); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px;
+  margin: 16px 0;
+  transition: border-color 0.2s;
+}
+
+.method-detail:hover { border-color: var(--border-bright); }
+
+.method-signature {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; color: var(--text-main);
+  background: var(--g3); padding: 14px 18px;
+  border-radius: 8px; margin: 16px 0;
+  border: 1px solid var(--border);
+  overflow-x: auto; direction: ltr;
+}
+
+.method-return {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin: 10px 0;
+  font-size: 13px; color: var(--text-sub);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.return-arrow { color: var(--green-mid); }
+.return-type { color: #93c5fd; }
+
+/* ── PARAMS TABLE ── */
+.params-table {
+  width: 100%; border-collapse: collapse;
+  margin: 16px 0; font-size: 13px;
+}
+
+.params-table th {
+  text-align: right; padding: 10px 14px;
+  background: var(--g3); color: var(--text-sub);
+  font-weight: 600; font-size: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.params-table td {
+  padding: 10px 14px; border-bottom: 1px solid rgba(34,197,94,0.07);
+  vertical-align: top;
+}
+
+.params-table tr:hover td { background: var(--green-shadow2); }
+
+.param-name-cell {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--green-bright); white-space: nowrap;
+}
+
+.param-type-cell {
+  font-family: 'JetBrains Mono', monospace;
+  color: #93c5fd;
+}
+
+.req-yes { color: var(--green-mid); font-weight: 600; }
+.req-no { color: var(--text-dim); }
+
+/* ── FILTER BADGES ── */
+.filters-grid {
+  display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0;
+}
+
+.filter-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 8px; font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--green-bright);
+  cursor: default; transition: all 0.15s;
+}
+
+.filter-badge:hover {
+  border-color: var(--green-mid);
+  background: var(--green-shadow);
+  transform: translateY(-1px);
+}
+
+.filter-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green-neon); }
+
+/* ── TABS ── */
+.tabs {
+  display: flex; gap: 2px;
+  background: var(--g3); padding: 4px;
+  border-radius: 10px; margin-bottom: 20px;
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+
+.tab-btn {
+  padding: 7px 18px; border-radius: 7px;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+  color: var(--text-dim); background: none; border: none;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.tab-btn.active { background: var(--green-dim); color: var(--green-bright); }
+.tab-btn:hover:not(.active) { color: var(--text-sub); }
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* ── CALLOUT ── */
+.callout {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 20px; border-radius: 10px;
+  margin: 16px 0; font-size: 14px;
+}
+
+.callout-info { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); }
+.callout-warn { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.callout-text { color: var(--text-sub); line-height: 1.7; }
+
+/* ── TYPE CARD ── */
+.types-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px; margin: 20px 0;
+}
+
+.type-card {
+  background: var(--g2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px;
+  transition: all 0.15s;
+}
+
+.type-card:hover { border-color: var(--border-bright); box-shadow: 0 4px 20px var(--green-shadow2); }
+
+.type-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--green-bright); font-weight: 600;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+
+.type-fields { display: flex; flex-direction: column; gap: 4px; }
+
+.type-field {
+  display: flex; align-items: baseline; gap: 8px;
+  font-size: 12px;
+}
+
+.tf-name { font-family: 'JetBrains Mono', monospace; color: var(--text-sub); }
+.tf-type { font-family: 'JetBrains Mono', monospace; color: #93c5fd; font-size: 11px; }
+.tf-opt { color: var(--text-dim); font-size: 11px; }
+
+/* ── HANDLER TABLE ── */
+.handler-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin: 20px 0;
+}
+
+.handler-card {
+  background: var(--g2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px;
+  transition: all 0.15s;
+}
+
+.handler-card:hover { border-color: var(--border-bright); }
+
+.handler-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--green-bright); margin-bottom: 6px;
+}
+
+.handler-desc { font-size: 12px; color: var(--text-dim); }
+
+/* ── MOBILE TOGGLE ── */
+#sidebar-toggle {
+  display: none; position: fixed;
+  top: 16px; right: 16px; z-index: 200;
+  width: 44px; height: 44px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer;
+  align-items: center; justify-content: center;
+  font-size: 20px; color: var(--green-mid);
+  transition: all 0.2s;
+}
+
+#sidebar-toggle:hover { border-color: var(--green-mid); box-shadow: 0 0 15px var(--green-shadow); }
+
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6); z-index: 99;
+  backdrop-filter: blur(4px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  #main { margin-right: 0; }
+  #sidebar {
+    transform: translateX(100%);
+  }
+  #sidebar.open { transform: translateX(0); }
+  #sidebar-toggle { display: flex; }
+  .sidebar-overlay.open { display: block; }
+  .hero { padding: 80px 24px 56px; }
+  .content-section { padding: 40px 24px; }
+}
+
+@media (max-width: 640px) {
+  .methods-grid { grid-template-columns: 1fr; }
+  .handler-grid { grid-template-columns: 1fr; }
+  .types-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+}
+
+/* ── PROGRESS BAR ── */
+#progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--green-mid), var(--green-neon));
+  z-index: 9999; transition: width 0.1s;
+  box-shadow: 0 0 10px var(--green-mid);
+}
+
+/* ── BACK TO TOP ── */
+#backTop {
+  position: fixed; bottom: 32px; left: 32px;
+  width: 44px; height: 44px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green-mid); font-size: 18px;
+  z-index: 50; transition: all 0.2s;
+  opacity: 0; transform: translateY(10px);
+}
+
+#backTop.show { opacity: 1; transform: translateY(0); }
+#backTop:hover { border-color: var(--green-mid); box-shadow: 0 0 20px var(--green-shadow); }
+
+/* ── TABLE OF CONTENTS PILL ── */
+.toc-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 999px; font-size: 12px;
+  color: var(--text-dim); margin-bottom: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── QUICK NAV FLOATING PILLS ── */
+.quick-links {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0;
+}
+
+.quick-link {
+  padding: 6px 14px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 999px; text-decoration: none;
+  font-size: 12px; color: var(--text-sub);
+  transition: all 0.15s; font-family: 'JetBrains Mono', monospace;
+}
+
+.quick-link:hover {
+  color: var(--green-bright); border-color: var(--green-mid);
+  background: var(--green-shadow);
+}
+
+/* ── SECTION DIVIDER ── */
+.glow-divider {
+  height: 1px; background: linear-gradient(90deg, transparent, var(--green-mid), transparent);
+  margin: 0; opacity: 0.4;
+}
+
+/* ── INLINE CODE ── */
+code:not(pre code) {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; padding: 1px 6px;
+  background: var(--g3); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--green-bright);
+}
+
+/* ── FOOTNOTE ── */
+.footnote {
+  font-size: 12px; color: var(--text-dim);
+  padding: 12px 16px; background: var(--g2);
+  border-radius: 8px; border: 1px solid var(--border);
+  margin-top: 12px; font-family: 'JetBrains Mono', monospace;
+  direction: ltr;
+}
+</style>
 </head>
-<body class="p-3 mb-2">
-    <nav class="navbar navbar-expand-md bg-light-subtle py-3">
-    
-      <div class="container">
-        <a href="https://balepy.github.io" class="navbar-brand display-6">balepy</a>   
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span></button>
+<body>
 
+<div id="progress"></div>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
 
-      <div class="collapse navbar-collapse nav" id="navmenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a href="docs.html" class="fonts nav-link hover">مستندات</a>
-          </li>
-          <li class="nav-item">
-            <a href="#surce" class="fonts nav-link hover">نمونه</a>
-          </li>
-          <li class="nav-item">
-            <a href="#aboutme" class="fonts nav-link hover">درباره من</a>
-          </li>
-          <li class="nav-item">
-            <a href="#socialMedia" class="fonts nav-link hover">ارتباط با من</a>
-          </li>
-        </ul>
+<!-- Mobile Toggle -->
+<button id="sidebar-toggle" onclick="toggleSidebar()" aria-label="منو">☰</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <a href="#hero" class="sidebar-logo">
+      <div class="logo-icon">B</div>
+      <div>
+        <div class="logo-text">balepy</div>
+        <div class="logo-version">v1.5.1</div>
+      </div>
+    </a>
+    <div class="sidebar-search">
+      <input class="search-input" type="text" placeholder="جستجو در مستندات..." id="searchInput" oninput="filterNav(this.value)">
+    </div>
+  </div>
+
+  <div class="nav-section" id="navContent">
+    <div class="nav-section-title">شروع سریع</div>
+    <a href="#install" class="nav-link" data-target="install">نصب</a>
+    <a href="#quickstart" class="nav-link" data-target="quickstart">استفاده اولیه</a>
+
+    <div class="nav-section-title">کلاس Client</div>
+    <a href="#client" class="nav-link" data-target="client">ساخت Client</a>
+    <a href="#lifecycle" class="nav-link" data-target="lifecycle">lifecycle</a>
+    <a href="#middleware" class="nav-link" data-target="middleware">Middleware</a>
+
+    <div class="nav-section-title">پیام‌ها</div>
+    <a href="#send_message" class="nav-link" data-target="send_message">send_message</a>
+    <a href="#send_photo" class="nav-link" data-target="send_photo">send_photo</a>
+    <a href="#send_audio" class="nav-link" data-target="send_audio">send_audio</a>
+    <a href="#send_video" class="nav-link" data-target="send_video">send_video</a>
+    <a href="#send_document" class="nav-link" data-target="send_document">send_document</a>
+    <a href="#send_animation" class="nav-link" data-target="send_animation">send_animation</a>
+    <a href="#send_voice" class="nav-link" data-target="send_voice">send_voice</a>
+    <a href="#send_sticker" class="nav-link" data-target="send_sticker">send_sticker</a>
+    <a href="#send_location" class="nav-link" data-target="send_location">send_location</a>
+    <a href="#send_contact" class="nav-link" data-target="send_contact">send_contact</a>
+    <a href="#send_dice" class="nav-link" data-target="send_dice">send_dice</a>
+    <a href="#send_venue" class="nav-link" data-target="send_venue">send_venue</a>
+    <a href="#send_video_note" class="nav-link" data-target="send_video_note">send_video_note</a>
+    <a href="#send_media_group" class="nav-link" data-target="send_media_group">send_media_group</a>
+    <a href="#forward_message" class="nav-link" data-target="forward_message">forward_message</a>
+    <a href="#copy_message" class="nav-link" data-target="copy_message">copy_message</a>
+    <a href="#delete_message" class="nav-link" data-target="delete_message">delete_message</a>
+    <a href="#edit_methods" class="nav-link" data-target="edit_methods">ویرایش پیام</a>
+    <a href="#pin_methods" class="nav-link" data-target="pin_methods">پین کردن</a>
+    <a href="#callback" class="nav-link" data-target="callback">Callback Query</a>
+    <a href="#get_file" class="nav-link" data-target="get_file">دریافت فایل</a>
+
+    <div class="nav-section-title">کاربران و چت</div>
+    <a href="#get_me" class="nav-link" data-target="get_me">get_me</a>
+    <a href="#get_chat" class="nav-link" data-target="get_chat">get_chat / get_user</a>
+    <a href="#chat_members" class="nav-link" data-target="chat_members">مدیریت اعضا</a>
+    <a href="#chat_settings" class="nav-link" data-target="chat_settings">تنظیمات چت</a>
+    <a href="#invite_links" class="nav-link" data-target="invite_links">لینک دعوت</a>
+    <a href="#bot_commands" class="nav-link" data-target="bot_commands">دستورات ربات</a>
+
+    <div class="nav-section-title">پرداخت</div>
+    <a href="#payments" class="nav-link" data-target="payments">ارسال فاکتور <span class="nav-badge">💰</span></a>
+
+    <div class="nav-section-title">استیکر</div>
+    <a href="#stickers" class="nav-link" data-target="stickers">مدیریت استیکر</a>
+
+    <div class="nav-section-title">آپدیت‌ها</div>
+    <a href="#updates" class="nav-link" data-target="updates">Polling & Webhook</a>
+
+    <div class="nav-section-title">فیلترها</div>
+    <a href="#filters" class="nav-link" data-target="filters">فیلترهای آماده</a>
+    <a href="#filter_compose" class="nav-link" data-target="filter_compose">ترکیب فیلترها</a>
+    <a href="#custom_filter" class="nav-link" data-target="custom_filter">فیلتر سفارشی</a>
+
+    <div class="nav-section-title">هندلرها</div>
+    <a href="#handlers" class="nav-link" data-target="handlers">Handler Classes</a>
+
+    <div class="nav-section-title">تایپ‌ها</div>
+    <a href="#types" class="nav-link" data-target="types">Types Reference</a>
+
+    <div class="nav-section-title">خطاها</div>
+    <a href="#errors" class="nav-link" data-target="errors">مدیریت خطا</a>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-eyebrow"><div class="hero-dot"></div>Python Library for Bale Messenger</div>
+    <h1>balepy</h1>
+    <p class="hero-sub">کتابخانه‌ای قدرتمند و async برای ساخت ربات‌های Bale Messenger — با رابطی الهام‌گرفته از Pyrogram</p>
+    <div class="hero-install" onclick="copyInstall(this)">
+      <code>pip install -U balepy</code>
+      <span class="copy-btn" id="installCopyBtn">کپی</span>
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-green">✓ Async / Await</span>
+      <span class="badge badge-green">✓ v1.5.1</span>
+      <span class="badge">Python 3.9+</span>
+      <span class="badge">MIT License</span>
+    </div>
+    <div class="quick-links" style="margin-top:32px">
+      <a href="#install" class="quick-link">نصب</a>
+      <a href="#quickstart" class="quick-link">شروع سریع</a>
+      <a href="#filters" class="quick-link">فیلترها</a>
+      <a href="#payments" class="quick-link">پرداخت</a>
+      <a href="#types" class="quick-link">تایپ‌ها</a>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="content-section" id="install">
+    <span class="section-anchor" id="anchor-install"></span>
+    <div class="section-tag">شروع</div>
+    <h2 class="section-title">نصب کتابخانه</h2>
+    <p class="section-desc">با یک دستور ساده آخرین نسخه balepy را نصب کنید.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="cm"># نصب آخرین نسخه</span>
+<span class="fn">pip</span> install <span class="op">-U</span> balepy
+
+<span class="cm"># نصب از GitHub</span>
+<span class="fn">pip</span> install git+https://github.com/mamdmehrabi/balepy.git</pre>
+    </div>
+    <div class="callout callout-info">
+      <div class="callout-icon">💡</div>
+      <div class="callout-text">برای رنگ‌آمیزی خروجی در ترمینال، می‌توانید <code>colorama</code> را هم نصب کنید: <code>pip install colorama</code></div>
+    </div>
+  </section>
+
+  <!-- QUICKSTART -->
+  <section class="content-section" id="quickstart">
+    <span class="section-anchor" id="anchor-quickstart"></span>
+    <div class="section-tag">شروع سریع</div>
+    <h2 class="section-title">اولین ربات</h2>
+    <p class="section-desc">با چند خط کد یک ربات echo ساده بسازید.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy</span> <span class="kw">import</span> <span class="nx">Client</span><span class="op">,</span> <span class="nx">filters</span>
+
+<span class="nx">bot</span> <span class="op">=</span> <span class="fn">Client</span>(<span class="st">"MyBot"</span><span class="op">,</span> <span class="st">"TOKEN"</span>)
+
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="fn">command</span>(<span class="st">"start"</span>))
+<span class="kw">async def</span> <span class="fn">start_handler</span>(<span class="pm">message</span>):
+    <span class="kw">await</span> <span class="nx">message</span><span class="op">.</span><span class="fn">reply</span>(<span class="st">"سلام! ربات شروع شد 🌿"</span>)
+
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="nx">text</span>)
+<span class="kw">async def</span> <span class="fn">echo</span>(<span class="pm">message</span>):
+    <span class="kw">await</span> <span class="nx">message</span><span class="op">.</span><span class="fn">reply</span>(<span class="nx">message</span><span class="op">.</span><span class="nx">text</span>)
+
+<span class="nx">bot</span><span class="op">.</span><span class="fn">run</span>()</pre>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:600;color:var(--text-main);margin:32px 0 16px">ربات با Callback Query</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy</span> <span class="kw">import</span> <span class="nx">Client</span><span class="op">,</span> <span class="nx">filters</span>
+<span class="kw">from</span> <span class="nx">balepy.types</span> <span class="kw">import</span> <span class="tp">InlineKeyboardMarkup</span><span class="op">,</span> <span class="tp">InlineKeyboardButton</span>
+
+<span class="nx">bot</span> <span class="op">=</span> <span class="fn">Client</span>(<span class="st">"ButtonBot"</span><span class="op">,</span> <span class="st">"TOKEN"</span>)
+
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="fn">command</span>(<span class="st">"menu"</span>))
+<span class="kw">async def</span> <span class="fn">menu</span>(<span class="pm">message</span>):
+    <span class="nx">keyboard</span> <span class="op">=</span> <span class="tp">InlineKeyboardMarkup</span>([
+        [<span class="tp">InlineKeyboardButton</span>(<span class="st">"گزینه ۱"</span><span class="op">,</span> callback_data<span class="op">=</span><span class="st">"opt1"</span>)],
+        [<span class="tp">InlineKeyboardButton</span>(<span class="st">"گزینه ۲"</span><span class="op">,</span> callback_data<span class="op">=</span><span class="st">"opt2"</span>)],
+    ])
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_message</span>(<span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span> <span class="st">"انتخاب کن:"</span><span class="op">,</span> reply_markup<span class="op">=</span><span class="nx">keyboard</span>)
+
+<span class="de">@bot.on_callback_query</span>(<span class="nx">filters</span><span class="op">.</span><span class="fn">callback_data</span>(<span class="st">"opt1"</span>))
+<span class="kw">async def</span> <span class="fn">on_opt1</span>(<span class="pm">callback</span>):
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">anwser_callback_query</span>(<span class="nx">callback</span><span class="op">.</span><span class="nx">id</span><span class="op">,</span> text<span class="op">=</span><span class="st">"گزینه اول انتخاب شد!"</span>)
+
+<span class="nx">bot</span><span class="op">.</span><span class="fn">run</span>()</pre>
+    </div>
+  </section>
+
+  <!-- CLIENT -->
+  <section class="content-section" id="client">
+    <span class="section-anchor" id="anchor-client"></span>
+    <div class="section-tag">Client</div>
+    <h2 class="section-title">کلاس Client</h2>
+    <p class="section-desc">کلاس اصلی برای تمام عملیات ربات. تمام متدها از این کلاس در دسترس هستند.</p>
+
+    <div class="method-detail">
+      <div class="method-name"><span class="async-badge">class</span> Client</div>
+      <div class="method-signature">
+        <span class="fn">Client</span>(<span class="pm">name</span><span class="op">:</span> <span class="tp">str</span><span class="op">,</span> <span class="pm">bot_token</span><span class="op">:</span> <span class="tp">str</span><span class="op">,</span> <span class="op">**</span><span class="pm">kwargs</span>)
+      </div>
+      <table class="params-table">
+        <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">name</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td class="text-sub">نام ربات (فقط برای نمایش)</td></tr>
+          <tr><td class="param-name-cell">bot_token</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td class="text-sub">توکن ربات از BaleBot</td></tr>
+          <tr><td class="param-name-cell">wallet_token</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td class="text-sub">توکن wallet برای پرداخت</td></tr>
+          <tr><td class="param-name-cell">timeout</td><td class="param-type-cell">Optional[int]</td><td class="req-no">20</td><td class="text-sub">timeout درخواست‌های HTTP</td></tr>
+          <tr><td class="param-name-cell">max_retry</td><td class="param-type-cell">Optional[int]</td><td class="req-no">3</td><td class="text-sub">تعداد تلاش مجدد در خطا</td></tr>
+          <tr><td class="param-name-cell">base_url</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td class="text-sub">آدرس سفارشی API</td></tr>
+          <tr><td class="param-name-cell">proxies</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td class="text-sub">آدرس پروکسی</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- LIFECYCLE -->
+  <section class="content-section" id="lifecycle">
+    <span class="section-anchor" id="anchor-lifecycle"></span>
+    <div class="section-tag">Client</div>
+    <h2 class="section-title">اجرا و چرخه حیات</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">run() <span class="async-badge">sync</span></div>
+        <div class="method-desc">ربات را با long polling اجرا می‌کند. مناسب برای اسکریپت‌های ساده.</div>
+        <div class="method-params"><span class="param-chip">بدون پارامتر</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">start() <span class="async-badge">async</span></div>
+        <div class="method-desc">شروع polling برای استفاده در event loop موجود.</div>
+        <div class="method-params"><span class="param-chip">بدون پارامتر</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_file_url() <span class="async-badge">sync</span></div>
+        <div class="method-desc">آدرس مستقیم دانلود فایل را می‌سازد.</div>
+        <div class="method-params"><span class="param-chip required">file_path: str</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">download_file() <span class="async-badge">async</span></div>
+        <div class="method-desc">فایل را با file_id دانلود می‌کند و tuple برمی‌گرداند.</div>
+        <div class="method-params"><span class="param-chip required">file_id: str</span></div>
       </div>
     </div>
-    </nav>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="cm"># استفاده در داخل event loop</span>
+<span class="kw">import</span> <span class="nx">asyncio</span>
 
-    <section class="bg-light-subtle text-right text-dark p-lg-0 pt-lg-2">
-      <div class="container">
-        <div class="d-sm-flex align-items-center justify-content-between">
-          <div>
-            <h1 class="fonts display-6 text-decoration-underline">ساخت باتِ بله</h1>
-            <div class="h1 display-6">
-              <span class="fonts text-warning">با زبان پایتون و</span>
-            </div>
-            <div class="h1">
-              <span class="fonts text-success">کتابخانه بله پای</span>
-            </div>
-            <p class="fonts lead">با کتابخانه بله پای و زبان برنامه نویسی پایتون توهم بات خودتو طراحی کن!</p>
-            <a class="btn btn-primary btn-lg" href="docs.html">
-              <i class="fonts bi bi-book"></i> دیدن مستندات</a>
-          </div>
-          <img src="https://s6.uupload.ir/files/91365223855_n9qb.jpg" class="img-fluid rounded w-50 d-none d-sm-block img" alt="profile">
+<span class="kw">async def</span> <span class="fn">main</span>():
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">start</span>()
+
+asyncio<span class="op">.</span><span class="fn">run</span>(<span class="fn">main</span>())</pre>
+    </div>
+  </section>
+
+  <!-- MIDDLEWARE -->
+  <section class="content-section" id="middleware">
+    <span class="section-anchor" id="anchor-middleware"></span>
+    <div class="section-tag">Client</div>
+    <h2 class="section-title">Middleware</h2>
+    <p class="section-desc">قبل از رسیدن آپدیت به هندلر، منطق اجرا کنید. با برگرداندن <code>False</code> می‌توانید پردازش را متوقف کنید.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="cm"># middleware ساده برای لاگ</span>
+<span class="kw">async def</span> <span class="fn">logging_middleware</span>(<span class="pm">client</span><span class="op">,</span> <span class="pm">update</span>):
+    <span class="fn">print</span>(<span class="st">f"Update received: </span>{update}<span class="st">"</span>)
+    <span class="kw">return</span> <span class="kw">True</span>  <span class="cm"># ادامه پردازش</span>
+
+<span class="cm"># middleware برای فیلتر کاربر بلاک شده</span>
+<span class="kw">async def</span> <span class="fn">block_filter</span>(<span class="pm">client</span><span class="op">,</span> <span class="pm">update</span>):
+    blocked_users <span class="op">=</span> [<span class="nu">123456</span>]
+    <span class="kw">if</span> <span class="nx">update</span><span class="op">.</span><span class="nx">message</span><span class="op"> and </span><span class="nx">update</span><span class="op">.</span><span class="nx">message</span><span class="op">.</span><span class="nx">from_user</span><span class="op">.</span><span class="nx">id</span> <span class="kw">in</span> <span class="nx">blocked_users</span>:
+        <span class="kw">return</span> <span class="kw">False</span>  <span class="cm"># توقف پردازش</span>
+
+<span class="nx">bot</span><span class="op">.</span><span class="fn">use</span>(<span class="nx">logging_middleware</span>)
+<span class="nx">bot</span><span class="op">.</span><span class="fn">use</span>(<span class="nx">block_filter</span>)</pre>
+    </div>
+  </section>
+
+  <!-- SEND MESSAGE -->
+  <section class="content-section" id="send_message">
+    <span class="section-anchor" id="anchor-send_message"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_message</h2>
+    <p class="section-desc">ارسال پیام متنی به یک چت.</p>
+    <div class="method-detail">
+      <div class="method-name">send_message <span class="async-badge">async</span></div>
+      <div class="method-return"><span class="return-arrow">→</span><span class="return-type">dict</span></div>
+      <table class="params-table">
+        <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">chat_id</td><td class="param-type-cell">Union[int, str]</td><td class="req-yes">✓</td><td>آیدی چت یا username</td></tr>
+          <tr><td class="param-name-cell">text</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>متن پیام</td></tr>
+          <tr><td class="param-name-cell">parse_mode</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>HTML یا Markdown</td></tr>
+          <tr><td class="param-name-cell">reply_to_message_id</td><td class="param-type-cell">Optional[int]</td><td class="req-no">—</td><td>آیدی پیام برای ریپلای</td></tr>
+          <tr><td class="param-name-cell">reply_markup</td><td class="param-type-cell">Optional[dict]</td><td class="req-no">—</td><td>کیبورد / دکمه‌ها</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_message</span>(
+    chat_id<span class="op">=</span><span class="nu">123456789</span><span class="op">,</span>
+    text<span class="op">=</span><span class="st">"&lt;b&gt;سلام!&lt;/b&gt; این یک پیام تستی است."</span><span class="op">,</span>
+    parse_mode<span class="op">=</span><span class="st">"HTML"</span>
+)</pre>
+    </div>
+  </section>
+
+  <!-- SEND PHOTO -->
+  <section class="content-section" id="send_photo">
+    <span class="section-anchor" id="anchor-send_photo"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_photo</h2>
+    <div class="method-detail">
+      <div class="method-name">send_photo <span class="async-badge">async</span></div>
+      <div class="method-return"><span class="return-arrow">→</span><span class="return-type">dict</span></div>
+      <table class="params-table">
+        <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">chat_id</td><td class="param-type-cell">Union[int, str]</td><td class="req-yes">✓</td><td>آیدی چت</td></tr>
+          <tr><td class="param-name-cell">photo</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>file_id یا URL تصویر</td></tr>
+          <tr><td class="param-name-cell">caption</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>توضیح زیر تصویر</td></tr>
+          <tr><td class="param-name-cell">parse_mode</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>فرمت caption</td></tr>
+          <tr><td class="param-name-cell">reply_to_message_id</td><td class="param-type-cell">Optional[int]</td><td class="req-no">—</td><td>ریپلای به پیام</td></tr>
+          <tr><td class="param-name-cell">reply_markup</td><td class="param-type-cell">Optional[dict]</td><td class="req-no">—</td><td>کیبورد</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_photo</span>(
+    chat_id<span class="op">=</span><span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span>
+    photo<span class="op">=</span><span class="st">"https://example.com/image.jpg"</span><span class="op">,</span>
+    caption<span class="op">=</span><span class="st">"عکس زیبا 🌿"</span>
+)</pre>
+    </div>
+  </section>
+
+  <!-- SEND AUDIO -->
+  <section class="content-section" id="send_audio">
+    <span class="section-anchor" id="anchor-send_audio"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_audio</h2>
+    <div class="method-detail">
+      <div class="method-name">send_audio <span class="async-badge">async</span></div>
+      <div class="method-return"><span class="return-arrow">→</span><span class="return-type">dict</span></div>
+      <table class="params-table">
+        <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">chat_id</td><td class="param-type-cell">Union[int, str]</td><td class="req-yes">✓</td><td>آیدی چت</td></tr>
+          <tr><td class="param-name-cell">audio</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>file_id یا URL فایل صوتی</td></tr>
+          <tr><td class="param-name-cell">caption</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>توضیح</td></tr>
+          <tr><td class="param-name-cell">duration</td><td class="param-type-cell">Optional[int]</td><td class="req-no">—</td><td>مدت زمان (ثانیه)</td></tr>
+          <tr><td class="param-name-cell">performer</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>نام خواننده</td></tr>
+          <tr><td class="param-name-cell">title</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>عنوان آهنگ</td></tr>
+          <tr><td class="param-name-cell">reply_to_message_id</td><td class="param-type-cell">Optional[int]</td><td class="req-no">—</td><td>ریپلای</td></tr>
+          <tr><td class="param-name-cell">reply_markup</td><td class="param-type-cell">Optional[dict]</td><td class="req-no">—</td><td>کیبورد</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEND VIDEO -->
+  <section class="content-section" id="send_video">
+    <span class="section-anchor" id="anchor-send_video"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_video</h2>
+    <div class="callout callout-info">
+      <div class="callout-icon">📹</div>
+      <div class="callout-text">پارامترهای این متد مشابه <code>send_audio</code> هستند با اضافه‌شدن <code>width</code>، <code>height</code> و <code>duration</code>.</div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_video</span>(
+    chat_id<span class="op">=</span><span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span>
+    video<span class="op">=</span><span class="st">"file_id_here"</span><span class="op">,</span>
+    caption<span class="op">=</span><span class="st">"ویدیو"</span><span class="op">,</span>
+    width<span class="op">=</span><span class="nu">1280</span><span class="op">,</span>
+    height<span class="op">=</span><span class="nu">720</span><span class="op">,</span>
+    duration<span class="op">=</span><span class="nu">60</span>
+)</pre>
+    </div>
+  </section>
+
+  <!-- SEND DOCUMENT -->
+  <section class="content-section" id="send_document">
+    <span class="section-anchor" id="anchor-send_document"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_document</h2>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_document</span>(
+    chat_id<span class="op">=</span><span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span>
+    document<span class="op">=</span><span class="st">"file_id_or_url"</span><span class="op">,</span>
+    caption<span class="op">=</span><span class="st">"فایل PDF"</span><span class="op">,</span>
+    file_name<span class="op">=</span><span class="st">"document.pdf"</span>
+)</pre>
+    </div>
+  </section>
+
+  <!-- SEND ANIMATION, VOICE, STICKER, LOCATION, CONTACT -->
+  <section class="content-section" id="send_animation">
+    <span class="section-anchor" id="anchor-send_animation"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_animation / send_voice / send_sticker</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">send_animation <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال GIF یا انیمیشن.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">animation</span>
+          <span class="param-chip">caption</span>
         </div>
       </div>
-    </section>
-
-    <section class="mt-5 p-5 cov">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 p-2">
-            <div class="card bg-card text-light">
-              <div class="card-body text-center bg-costomize">
-                <div class="h1">
-                  <i class="bi bi-chat-left"></i>
-                </div>
-                <p class="fonts card-text">اکر دوست داری به گروه تلگراممون اضافه بشی و راجب کتابخونه کلی حرف بزنی از دکمه ی زیر استفاده کن</p>
-                <a href="https://t.me/balepyGP" class="fonts btn btn-outline-warning">GAP</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-5 p-2">
-            <div class="card bg-doc text-light text-center">
-              <div class="card-body text-center">
-                <div class="h1">
-                  <i class="bi bi-book"></i>
-                </div>
-                <p class="fonts card-text">اگر میخوای از کتابخونه استفاده کنی ولی بلد نیستی پس بزن روی دکمه زیر و داکیومنت رو کامل بخون</p>
-                <a href="docs.html" class="fonts btn btn-primary">دیدن مستندات</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5"></div>
+      <div class="method-card">
+        <div class="method-name">send_voice <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال پیام صوتی (فرمت OGG).</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">voice</span>
+          <span class="param-chip">duration</span>
         </div>
       </div>
-    </section>
-
-    <section id="documents" class="p-3 mb-5 bg-primary-subtle text-emphasis-primary text-dark divv2">
-      <div class="container">
-        <div class="row align-items-right justify-content-between">
-          <div class="fonts col-md p-2">
-            <!-- <img src="https://s6.uupload.ir/files/programmer_94z.jpg" alt="programmer" class="img-fluid" style="width: 200px; height: 200px;"> -->
-            <h2>مستندات</h2>
-          </div>
-          <div class="lead">
-            <p class="fonts">به قسمت داکیومنت خوش اومدید<br>شما میتونید با استفاده از دکمه های زیر از متد خود استفاده کنید!<br><u>توجه: همیشه قبل از استفاده کتابخونه رو با دستور زیر آپدیت کنید!</u> <br><br><code class="bg-dark text-light p-2 row justify-content-between h6 d-inline-flex" dir="ltr">pip install -U balepy</code></p>
-          </div>
-
-
-          </div>
+      <div class="method-card">
+        <div class="method-name">send_sticker <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال استیکر با file_id.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">sticker</span>
         </div>
       </div>
-
-    <section id="aboutme" class="bg-primary text-light divv2">
-      <div class="container">
-        <div class="row align-items-center justify-content-between">
-          <div class="col-md">
-            <img src="https://s8.uupload.ir/files/balethon_uvi2.png"  class="img-fluid" alt="background">
-          </div>
-          <div class="col-md p-3">
-            <h2 class="fonts display-6">
-              درباره من
-            </h2>
-            <p class="fonts lead">سلام دوست خوبه من!<br>خوشحالم که از کتابخانه من جهت ساخت بات بله استفاده میکنی.<br>برای دیدن بیوگرافی من میتونی به صفحه گیت هابم که لینکشو پایین صفحه گذاشتم استفاده کنی (:<br>و اگر در سایت یا داکیومنت مشکلی دیدید میتونید به تلگرام من پیام بدید(لینکش آخر صفحه)</p>
-            <a href="docs.html" class="btn btn-light">
-              <i class="fonts bi bi-journal"></i> خواندن داکیومنت
-            </a>
-          </div>
+      <div class="method-card">
+        <div class="method-name">send_video_note <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال ویدیو نوت (دایره‌ای).</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">video_note</span>
+          <span class="param-chip">duration</span>
+          <span class="param-chip">length</span>
         </div>
-      </div>
-    </section>
-
-      <br>
-    <section id="socialMedia" class="bg-primary-subtle divv2">
-      <div class="container p-3 mb-2 text-center">
-        <p class="text-dark"> <i  class="fonts bi bi-megaphone"></i> ما را در شبکه های اجتماعی دنبال کنید!</p>
-        <a href="https://t.me/TheCommit" class="btn btn btn-outline-primary">
-          Telegram <i class="bi bi-telegram"></i></a>
-        <a href="https://github.com/OnlyRad" class="btn btn-outline-primary">
-          GitHub <i class="bi bi-github"></i></a>
       </div>
     </div>
-    </section>
-</div>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  </section>
+
+  <!-- SEND LOCATION / CONTACT / DICE / VENUE -->
+  <section class="content-section" id="send_location">
+    <span class="section-anchor" id="anchor-send_location"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_location / send_contact / send_dice / send_venue</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">send_location <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال موقعیت جغرافیایی.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">latitude: float</span>
+          <span class="param-chip required">longitude: float</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">send_contact <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال کارت تماس.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">phone_number</span>
+          <span class="param-chip required">first_name</span>
+          <span class="param-chip">last_name</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">send_dice <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال تاس انیمیشنی.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip">emoji</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">send_venue <span class="async-badge">async</span></div>
+        <div class="method-desc">ارسال مکان با نام و آدرس.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">latitude</span>
+          <span class="param-chip required">longitude</span>
+          <span class="param-chip required">title</span>
+          <span class="param-chip required">address</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEND MEDIA GROUP -->
+  <section class="content-section" id="send_media_group">
+    <span class="section-anchor" id="anchor-send_media_group"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">send_media_group</h2>
+    <p class="section-desc">ارسال چند رسانه به صورت آلبوم.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy.types</span> <span class="kw">import</span> <span class="tp">InputMediaPhoto</span>
+
+<span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_media_group</span>(
+    chat_id<span class="op">=</span><span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span>
+    media<span class="op">=</span>[
+        <span class="tp">InputMediaPhoto</span>(<span class="st">"file_id_1"</span><span class="op">,</span> caption<span class="op">=</span><span class="st">"تصویر اول"</span>)<span class="op">,</span>
+        <span class="tp">InputMediaPhoto</span>(<span class="st">"file_id_2"</span>)<span class="op">,</span>
+    ]
+)</pre>
+    </div>
+  </section>
+
+  <!-- FORWARD / COPY / DELETE -->
+  <section class="content-section" id="forward_message">
+    <span class="section-anchor" id="anchor-forward_message"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">forward_message / copy_message / delete_message</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">forward_message <span class="async-badge">async</span></div>
+        <div class="method-desc">فوروارد پیام از چتی به چت دیگر.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">from_chat_id</span>
+          <span class="param-chip required">message_id</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">copy_message <span class="async-badge">async</span></div>
+        <div class="method-desc">کپی پیام بدون نشانه‌ی فوروارد.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">from_chat_id</span>
+          <span class="param-chip required">message_id</span>
+          <span class="param-chip">caption</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">delete_message <span class="async-badge">async</span></div>
+        <div class="method-desc">حذف یک پیام از چت.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">message_id</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDIT METHODS -->
+  <section class="content-section" id="edit_methods">
+    <span class="section-anchor" id="anchor-edit_methods"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">ویرایش پیام</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">edit_message_text <span class="async-badge">async</span></div>
+        <div class="method-desc">ویرایش متن یک پیام.</div>
+        <div class="method-params">
+          <span class="param-chip required">text</span>
+          <span class="param-chip">chat_id</span>
+          <span class="param-chip">message_id</span>
+          <span class="param-chip">parse_mode</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">edit_message_caption <span class="async-badge">async</span></div>
+        <div class="method-desc">ویرایش caption رسانه.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">message_id</span>
+          <span class="param-chip">caption</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">edit_message_reply_markup <span class="async-badge">async</span></div>
+        <div class="method-desc">ویرایش کیبورد پیام.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">message_id</span>
+          <span class="param-chip">reply_markup</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIN -->
+  <section class="content-section" id="pin_methods">
+    <span class="section-anchor" id="anchor-pin_methods"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">پین کردن پیام</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">pin <span class="async-badge">async</span></div>
+        <div class="method-desc">پین کردن پیام در چت.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">message_id</span>
+          <span class="param-chip">disable_notification</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">unpin <span class="async-badge">async</span></div>
+        <div class="method-desc">آنپین کردن پیام مشخص.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">message_id</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">unpin_all_messages <span class="async-badge">async</span></div>
+        <div class="method-desc">آنپین کردن تمام پیام‌ها.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALLBACK -->
+  <section class="content-section" id="callback">
+    <span class="section-anchor" id="anchor-callback"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">Callback Query</h2>
+    <div class="method-detail">
+      <div class="method-name">anwser_callback_query <span class="async-badge">async</span></div>
+      <div class="method-return"><span class="return-arrow">→</span><span class="return-type">dict</span></div>
+      <table class="params-table">
+        <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">callback_query_id</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>آیدی callback</td></tr>
+          <tr><td class="param-name-cell">text</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>متن نوتیفیکیشن</td></tr>
+          <tr><td class="param-name-cell">show_alert</td><td class="param-type-cell">bool</td><td class="req-no">False</td><td>نمایش به صورت alert</td></tr>
+          <tr><td class="param-name-cell">url</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>URL برای باز کردن</td></tr>
+          <tr><td class="param-name-cell">cache_time</td><td class="param-type-cell">Optional[int]</td><td class="req-no">—</td><td>مدت cache به ثانیه</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="de">@bot.on_callback_query</span>()
+<span class="kw">async def</span> <span class="fn">handle_callback</span>(<span class="pm">callback</span>):
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">anwser_callback_query</span>(
+        callback_query_id<span class="op">=</span><span class="nx">callback</span><span class="op">.</span><span class="nx">id</span><span class="op">,</span>
+        text<span class="op">=</span><span class="st">"✅ دریافت شد"</span><span class="op">,</span>
+        show_alert<span class="op">=</span><span class="kw">True</span>
+    )</pre>
+    </div>
+  </section>
+
+  <!-- GET FILE -->
+  <section class="content-section" id="get_file">
+    <span class="section-anchor" id="anchor-get_file"></span>
+    <div class="section-tag">Messages</div>
+    <h2 class="section-title">دریافت و دانلود فایل</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">get_file <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات فایل را بر اساس file_id برمی‌گرداند.</div>
+        <div class="method-params"><span class="param-chip required">file_id: str</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_file_url <span class="async-badge">sync</span></div>
+        <div class="method-desc">آدرس مستقیم دانلود فایل را می‌سازد.</div>
+        <div class="method-params"><span class="param-chip required">file_path: str</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">download_file <span class="async-badge">async</span></div>
+        <div class="method-desc">tuple از (file_path, url) برمی‌گرداند.</div>
+        <div class="method-params"><span class="param-chip required">file_id: str</span></div>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="cm"># دریافت اطلاعات فایل</span>
+<span class="nx">file_obj</span> <span class="op">=</span> <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">get_file</span>(<span class="nx">message</span><span class="op">.</span><span class="nx">document</span><span class="op">.</span><span class="nx">file_id</span>)
+<span class="nx">url</span> <span class="op">=</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">get_file_url</span>(<span class="nx">file_obj</span><span class="op">.</span><span class="nx">file_path</span>)
+
+<span class="cm"># دانلود مستقیم</span>
+<span class="nx">file_path</span><span class="op">,</span> <span class="nx">download_url</span> <span class="op">=</span> <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">download_file</span>(<span class="nx">file_id</span>)</pre>
+    </div>
+  </section>
+
+  <!-- USERS -->
+  <section class="content-section" id="get_me">
+    <span class="section-anchor" id="anchor-get_me"></span>
+    <div class="section-tag">Users & Chats</div>
+    <h2 class="section-title">اطلاعات ربات و کاربر</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">get_me <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات ربات جاری را برمی‌گرداند.</div>
+        <div class="method-return"><span class="return-arrow">→</span><span class="return-type">User</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">log_out <span class="async-badge">async</span></div>
+        <div class="method-desc">از سرور خارج می‌شود.</div>
+        <div class="method-return"><span class="return-arrow">→</span><span class="return-type">dict</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_user_profile_photos <span class="async-badge">async</span></div>
+        <div class="method-desc">عکس‌های پروفایل کاربر را برمی‌گرداند.</div>
+        <div class="method-params">
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip">offset</span>
+          <span class="param-chip">limit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET CHAT -->
+  <section class="content-section" id="get_chat">
+    <span class="section-anchor" id="anchor-get_chat"></span>
+    <div class="section-tag">Users & Chats</div>
+    <h2 class="section-title">get_chat / get_user</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">get_chat <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات کامل چت را برمی‌گرداند.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span></div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">ChatFullInfo</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_user <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات کاربر را با user_id برمی‌گرداند.</div>
+        <div class="method-params"><span class="param-chip required">user_id</span></div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">ChatFullInfo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAT MEMBERS -->
+  <section class="content-section" id="chat_members">
+    <span class="section-anchor" id="anchor-chat_members"></span>
+    <div class="section-tag">Users & Chats</div>
+    <h2 class="section-title">مدیریت اعضای چت</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">get_chat_administrators <span class="async-badge">async</span></div>
+        <div class="method-desc">لیست ادمین‌های چت.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span></div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">list[ChatMember]</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_chat_member <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات یک عضو خاص.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_chat_members_count <span class="async-badge">async</span></div>
+        <div class="method-desc">تعداد اعضای چت.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">ban_chat_member <span class="async-badge">async</span></div>
+        <div class="method-desc">بن کردن عضو.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip">until_date</span>
+          <span class="param-chip">revoke_messages</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">unban_chat_member <span class="async-badge">async</span></div>
+        <div class="method-desc">آنبن کردن عضو.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip">only_if_banned</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">promote_chat_member <span class="async-badge">async</span></div>
+        <div class="method-desc">ارتقا دادن عضو به ادمین.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip">can_delete_messages</span>
+          <span class="param-chip">can_pin_messages</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">restrict_chat_member <span class="async-badge">async</span></div>
+        <div class="method-desc">محدود کردن دسترسی عضو.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip required">permissions: ChatPermissions</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">leave_chat <span class="async-badge">async</span></div>
+        <div class="method-desc">ربات از چت خارج می‌شود.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">invite_to_chat <span class="async-badge">async</span></div>
+        <div class="method-desc">دعوت کاربر به چت.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">approve_chat_join_request <span class="async-badge">async</span></div>
+        <div class="method-desc">تأیید درخواست عضویت.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">decline_chat_join_request <span class="async-badge">async</span></div>
+        <div class="method-desc">رد درخواست عضویت.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">user_id</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAT SETTINGS -->
+  <section class="content-section" id="chat_settings">
+    <span class="section-anchor" id="anchor-chat_settings"></span>
+    <div class="section-tag">Users & Chats</div>
+    <h2 class="section-title">تنظیمات چت</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">set_chat_title <span class="async-badge">async</span></div>
+        <div class="method-desc">تغییر عنوان چت.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span><span class="param-chip required">title</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">set_chat_description <span class="async-badge">async</span></div>
+        <div class="method-desc">تغییر توضیحات چت.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span><span class="param-chip required">description</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">set_chat_photo <span class="async-badge">async</span></div>
+        <div class="method-desc">تغییر عکس چت.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span><span class="param-chip required">photo</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">delete_chat_photo <span class="async-badge">async</span></div>
+        <div class="method-desc">حذف عکس چت.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">set_chat_permissions <span class="async-badge">async</span></div>
+        <div class="method-desc">تنظیم مجوزهای پیش‌فرض.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span><span class="param-chip required">permissions: ChatPermissions</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">set_chat_administrator_custom_title <span class="async-badge">async</span></div>
+        <div class="method-desc">عنوان سفارشی برای ادمین.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span><span class="param-chip required">user_id</span><span class="param-chip required">custom_title</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVITE LINKS -->
+  <section class="content-section" id="invite_links">
+    <span class="section-anchor" id="anchor-invite_links"></span>
+    <div class="section-tag">Users & Chats</div>
+    <h2 class="section-title">لینک‌های دعوت</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">export_chat_invite_link <span class="async-badge">async</span></div>
+        <div class="method-desc">لینک دعوت اصلی را صادر می‌کند.</div>
+        <div class="method-params"><span class="param-chip required">chat_id</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">create_chat_invite_link <span class="async-badge">async</span></div>
+        <div class="method-desc">ایجاد لینک دعوت جدید.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip">name</span>
+          <span class="param-chip">expire_date</span>
+          <span class="param-chip">member_limit</span>
+          <span class="param-chip">creates_join_request</span>
+        </div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">InviteLink</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">edit_chat_invite_link <span class="async-badge">async</span></div>
+        <div class="method-desc">ویرایش لینک موجود.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">invite_link</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">revoke_chat_invite_link <span class="async-badge">async</span></div>
+        <div class="method-desc">باطل کردن لینک دعوت.</div>
+        <div class="method-params">
+          <span class="param-chip required">chat_id</span>
+          <span class="param-chip required">invite_link</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOT COMMANDS -->
+  <section class="content-section" id="bot_commands">
+    <span class="section-anchor" id="anchor-bot_commands"></span>
+    <div class="section-tag">Users & Chats</div>
+    <h2 class="section-title">دستورات ربات</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">set_my_commands <span class="async-badge">async</span></div>
+        <div class="method-desc">تنظیم لیست دستورات ربات.</div>
+        <div class="method-params"><span class="param-chip required">commands: list[BotCommand]</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_my_commands <span class="async-badge">async</span></div>
+        <div class="method-desc">دریافت لیست دستورات فعلی.</div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">list[BotCommand]</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">delete_my_commands <span class="async-badge">async</span></div>
+        <div class="method-desc">حذف همه دستورات ربات.</div>
+        <div class="method-params"><span class="param-chip">بدون پارامتر</span></div>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy.types</span> <span class="kw">import</span> <span class="tp">BotCommand</span>
+
+<span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">set_my_commands</span>([
+    <span class="tp">BotCommand</span>(<span class="st">"start"</span><span class="op">,</span> <span class="st">"شروع ربات"</span>)<span class="op">,</span>
+    <span class="tp">BotCommand</span>(<span class="st">"help"</span><span class="op">,</span> <span class="st">"راهنما"</span>)<span class="op">,</span>
+    <span class="tp">BotCommand</span>(<span class="st">"menu"</span><span class="op">,</span> <span class="st">"منوی اصلی"</span>)<span class="op">,</span>
+])</pre>
+    </div>
+  </section>
+
+  <!-- PAYMENTS -->
+  <section class="content-section" id="payments">
+    <span class="section-anchor" id="anchor-payments"></span>
+    <div class="section-tag">Payments 💰</div>
+    <h2 class="section-title">سیستم پرداخت</h2>
+    <p class="section-desc">با تنظیم <code>wallet_token</code> در Client می‌توانید فاکتور بفرستید و پرداخت‌ها را مدیریت کنید.</p>
+    <div class="callout callout-warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-text">توکن تست: <code>WALLET-TEST-1111111111111111</code> — در production از توکن واقعی استفاده کنید. برای <code>pre_checkout_query</code> باید در ۱۰ ثانیه پاسخ دهید.</div>
+    </div>
+
+    <div class="method-detail" style="margin-top:24px">
+      <div class="method-name">send_invoice <span class="async-badge">async</span></div>
+      <div class="method-return"><span class="return-arrow">→</span><span class="return-type">dict</span></div>
+      <table class="params-table">
+        <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">chat_id</td><td class="param-type-cell">Union[int, str]</td><td class="req-yes">✓</td><td>آیدی چت</td></tr>
+          <tr><td class="param-name-cell">title</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>عنوان فاکتور</td></tr>
+          <tr><td class="param-name-cell">description</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>توضیح فاکتور</td></tr>
+          <tr><td class="param-name-cell">payload</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>داده داخلی (برای شناسایی سفارش)</td></tr>
+          <tr><td class="param-name-cell">prices</td><td class="param-type-cell">list[LabeledPrice]</td><td class="req-yes">✓</td><td>لیست قیمت‌ها</td></tr>
+          <tr><td class="param-name-cell">photo_url</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>URL تصویر محصول</td></tr>
+          <tr><td class="param-name-cell">need_name</td><td class="param-type-cell">Optional[bool]</td><td class="req-no">—</td><td>درخواست نام</td></tr>
+          <tr><td class="param-name-cell">need_phone_number</td><td class="param-type-cell">Optional[bool]</td><td class="req-no">—</td><td>درخواست شماره</td></tr>
+          <tr><td class="param-name-cell">is_flexible</td><td class="param-type-cell">Optional[bool]</td><td class="req-no">—</td><td>قیمت قابل تغییر</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy</span> <span class="kw">import</span> <span class="nx">Client</span>
+<span class="kw">from</span> <span class="nx">balepy.types</span> <span class="kw">import</span> <span class="tp">LabeledPrice</span>
+
+<span class="nx">bot</span> <span class="op">=</span> <span class="fn">Client</span>(<span class="st">"PayBot"</span><span class="op">,</span> <span class="st">"TOKEN"</span><span class="op">,</span> wallet_token<span class="op">=</span><span class="st">"WALLET_TOKEN"</span>)
+
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="fn">command</span>(<span class="st">"buy"</span>))
+<span class="kw">async def</span> <span class="fn">buy</span>(<span class="pm">message</span>):
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_invoice</span>(
+        chat_id<span class="op">=</span><span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span>
+        title<span class="op">=</span><span class="st">"اشتراک ماهانه"</span><span class="op">,</span>
+        description<span class="op">=</span><span class="st">"۳۰ روز دسترسی کامل"</span><span class="op">,</span>
+        payload<span class="op">=</span><span class="st">"subscription_monthly"</span><span class="op">,</span>
+        prices<span class="op">=</span>[<span class="tp">LabeledPrice</span>(<span class="st">"اشتراک"</span><span class="op">,</span> <span class="nu">50000</span>)],
+        need_phone_number<span class="op">=</span><span class="kw">True</span>
+    )
+
+<span class="de">@bot.on_pre_checkout_query</span>
+<span class="kw">async def</span> <span class="fn">checkout</span>(<span class="pm">query</span>):
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">answer_pre_checkout_query</span>(<span class="nx">query</span><span class="op">.</span><span class="nx">id</span><span class="op">,</span> ok<span class="op">=</span><span class="kw">True</span>)
+
+<span class="de">@bot.on_successful_payment</span>
+<span class="kw">async def</span> <span class="fn">payment_done</span>(<span class="pm">message</span>):
+    <span class="kw">await</span> <span class="nx">message</span><span class="op">.</span><span class="fn">reply</span>(<span class="st">"✅ پرداخت موفق!"</span>)</pre>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:600;color:var(--text-main);margin:28px 0 12px">answer_pre_checkout_query</h3>
+    <table class="params-table">
+      <thead><tr><th>پارامتر</th><th>تایپ</th><th>اجباری</th><th>توضیح</th></tr></thead>
+      <tbody>
+        <tr><td class="param-name-cell">pre_checkout_query_id</td><td class="param-type-cell">str</td><td class="req-yes">✓</td><td>آیدی query</td></tr>
+        <tr><td class="param-name-cell">ok</td><td class="param-type-cell">bool</td><td class="req-no">True</td><td>تأیید یا رد پرداخت</td></tr>
+        <tr><td class="param-name-cell">error_message</td><td class="param-type-cell">Optional[str]</td><td class="req-no">—</td><td>پیام خطا در صورت رد</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- STICKERS -->
+  <section class="content-section" id="stickers">
+    <span class="section-anchor" id="anchor-stickers"></span>
+    <div class="section-tag">Stickers</div>
+    <h2 class="section-title">مدیریت استیکر</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">get_sticker_set <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات پک استیکر را برمی‌گرداند.</div>
+        <div class="method-params"><span class="param-chip required">name: str</span></div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">StickerSet</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">upload_sticker_file <span class="async-badge">async</span></div>
+        <div class="method-desc">آپلود فایل استیکر جدید.</div>
+        <div class="method-params"><span class="param-chip required">user_id</span><span class="param-chip required">png_sticker</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">create_new_sticker_set <span class="async-badge">async</span></div>
+        <div class="method-desc">ایجاد پک استیکر جدید.</div>
+        <div class="method-params">
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip required">name</span>
+          <span class="param-chip required">title</span>
+          <span class="param-chip required">emojis</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">add_sticker_to_set <span class="async-badge">async</span></div>
+        <div class="method-desc">افزودن استیکر به پک.</div>
+        <div class="method-params">
+          <span class="param-chip required">user_id</span>
+          <span class="param-chip required">name</span>
+          <span class="param-chip required">emojis</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">set_sticker_position_in_set <span class="async-badge">async</span></div>
+        <div class="method-desc">تغییر موقعیت استیکر در پک.</div>
+        <div class="method-params">
+          <span class="param-chip required">sticker</span>
+          <span class="param-chip required">position: int</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">delete_sticker_from_set <span class="async-badge">async</span></div>
+        <div class="method-desc">حذف استیکر از پک.</div>
+        <div class="method-params"><span class="param-chip required">sticker</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATES -->
+  <section class="content-section" id="updates">
+    <span class="section-anchor" id="anchor-updates"></span>
+    <div class="section-tag">Updates</div>
+    <h2 class="section-title">دریافت آپدیت‌ها</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">get_updates <span class="async-badge">async</span></div>
+        <div class="method-desc">دریافت آپدیت‌ها با long polling.</div>
+        <div class="method-params">
+          <span class="param-chip">offset: int = -1</span>
+          <span class="param-chip">limit: int = 100</span>
+          <span class="param-chip">timeout</span>
+          <span class="param-chip">allowed_updates</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">set_webhook <span class="async-badge">async</span></div>
+        <div class="method-desc">تنظیم Webhook برای دریافت آپدیت.</div>
+        <div class="method-params">
+          <span class="param-chip required">url: str</span>
+          <span class="param-chip">max_connections</span>
+          <span class="param-chip">allowed_updates</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">get_webhook_info <span class="async-badge">async</span></div>
+        <div class="method-desc">اطلاعات Webhook فعلی.</div>
+        <div class="method-return" style="margin-top:8px"><span class="return-arrow">→</span><span class="return-type">WebHookInfo</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">delete_webhook <span class="async-badge">async</span></div>
+        <div class="method-desc">حذف Webhook و بازگشت به polling.</div>
+        <div class="method-params"><span class="param-chip">بدون پارامتر</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section class="content-section" id="filters">
+    <span class="section-anchor" id="anchor-filters"></span>
+    <div class="section-tag">Filters</div>
+    <h2 class="section-title">فیلترهای آماده</h2>
+    <p class="section-desc">فیلترهای singleton که نیاز به instantiate ندارند.</p>
+
+    <h3 style="font-size:15px;font-weight:600;color:var(--text-sub);margin:0 0 12px">فیلترهای نوع محتوا</h3>
+    <div class="filters-grid">
+      <span class="filter-badge"><div class="filter-dot"></div>filters.text</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.photo</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.video</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.audio</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.voice</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.document</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.sticker</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.animation</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.contact</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.location</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.dice</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.invoice</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.successful_payment</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.video_note</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.venue</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.caption</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.media</span>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;color:var(--text-sub);margin:20px 0 12px">فیلترهای چت</h3>
+    <div class="filters-grid">
+      <span class="filter-badge"><div class="filter-dot"></div>filters.private</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.group</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.channel</span>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;color:var(--text-sub);margin:20px 0 12px">فیلترهای رویداد</h3>
+    <div class="filters-grid">
+      <span class="filter-badge"><div class="filter-dot"></div>filters.reply</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.forwarded</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.pinned_message</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.new_chat_members</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.left_chat_member</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.bot</span>
+      <span class="filter-badge"><div class="filter-dot"></div>filters.all</span>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:600;color:var(--text-sub);margin:20px 0 12px">فیلترهای تابعی</h3>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-name">filters.command(commands, prefixes="/")</div>
+        <div class="method-desc">فیلتر دستورات مانند /start یا /help. می‌توان list داد.</div>
+        <div class="method-params">
+          <span class="param-chip required">commands: str | list</span>
+          <span class="param-chip">prefixes: str = "/"</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">filters.regex(pattern, flags=0)</div>
+        <div class="method-desc">فیلتر با الگوی regex روی text یا caption.</div>
+        <div class="method-params">
+          <span class="param-chip required">pattern: str</span>
+          <span class="param-chip">flags: int</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">filters.text_match(keywords, case_sensitive=False)</div>
+        <div class="method-desc">فیلتر بر اساس وجود کلمه کلیدی در متن.</div>
+        <div class="method-params">
+          <span class="param-chip required">keywords: str | list</span>
+          <span class="param-chip">case_sensitive</span>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">filters.user(user_ids)</div>
+        <div class="method-desc">فیلتر بر اساس user_id فرستنده.</div>
+        <div class="method-params"><span class="param-chip required">user_ids: int | list[int]</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">filters.chat(chat_ids)</div>
+        <div class="method-desc">فیلتر بر اساس chat_id.</div>
+        <div class="method-params"><span class="param-chip required">chat_ids: int | list[int]</span></div>
+      </div>
+      <div class="method-card">
+        <div class="method-name">filters.callback_data(pattern)</div>
+        <div class="method-desc">فیلتر callback query با wildcard (*) پشتیبانی می‌کند.</div>
+        <div class="method-params"><span class="param-chip required">pattern: str | list</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER COMPOSE -->
+  <section class="content-section" id="filter_compose">
+    <span class="section-anchor" id="anchor-filter_compose"></span>
+    <div class="section-tag">Filters</div>
+    <h2 class="section-title">ترکیب فیلترها</h2>
+    <p class="section-desc">با عملگرهای <code>&</code>، <code>|</code> و <code>~</code> فیلترها را ترکیب کنید.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="cm"># AND — پیام متنی در چت خصوصی</span>
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="nx">text</span> <span class="op">&</span> <span class="nx">filters</span><span class="op">.</span><span class="nx">private</span>)
+<span class="kw">async def</span> <span class="fn">private_text</span>(<span class="pm">message</span>): <span class="op">...</span>
+
+<span class="cm"># OR — عکس یا ویدیو</span>
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="nx">photo</span> <span class="op">|</span> <span class="nx">filters</span><span class="op">.</span><span class="nx">video</span>)
+<span class="kw">async def</span> <span class="fn">media_handler</span>(<span class="pm">message</span>): <span class="op">...</span>
+
+<span class="cm"># NOT — هر پیامی که از ربات نباشد</span>
+<span class="de">@bot.on_message</span>(<span class="op">~</span><span class="nx">filters</span><span class="op">.</span><span class="nx">bot</span>)
+<span class="kw">async def</span> <span class="fn">human_only</span>(<span class="pm">message</span>): <span class="op">...</span>
+
+<span class="cm"># ترکیب پیچیده</span>
+<span class="de">@bot.on_message</span>(
+    (<span class="nx">filters</span><span class="op">.</span><span class="nx">text</span> <span class="op">|</span> <span class="nx">filters</span><span class="op">.</span><span class="nx">caption</span>) <span class="op">&</span>
+    <span class="nx">filters</span><span class="op">.</span><span class="fn">group</span> <span class="op">&</span>
+    <span class="op">~</span><span class="nx">filters</span><span class="op">.</span><span class="nx">bot</span>
+)
+<span class="kw">async def</span> <span class="fn">group_text</span>(<span class="pm">message</span>): <span class="op">...</span></pre>
+    </div>
+  </section>
+
+  <!-- CUSTOM FILTER -->
+  <section class="content-section" id="custom_filter">
+    <span class="section-anchor" id="anchor-custom_filter"></span>
+    <div class="section-tag">Filters</div>
+    <h2 class="section-title">فیلتر سفارشی</h2>
+    <p class="section-desc">با <code>filters.create()</code> فیلتر کاملاً سفارشی بسازید — sync یا async.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="cm"># فیلتر sync</span>
+<span class="nx">admin_filter</span> <span class="op">=</span> <span class="nx">filters</span><span class="op">.</span><span class="fn">create</span>(<span class="kw">lambda</span> <span class="pm">msg</span>: <span class="nx">msg</span><span class="op">.</span><span class="nx">from_user</span><span class="op">.</span><span class="nx">id</span> <span class="kw">in</span> [<span class="nu">123</span><span class="op">,</span> <span class="nu">456</span>])
+
+<span class="cm"># فیلتر async (با دسترسی به دیتابیس)</span>
+<span class="kw">async def</span> <span class="fn">is_premium</span>(<span class="pm">message</span>):
+    <span class="kw">return await</span> <span class="nx">db</span><span class="op">.</span><span class="fn">is_premium_user</span>(<span class="nx">message</span><span class="op">.</span><span class="nx">from_user</span><span class="op">.</span><span class="nx">id</span>)
+
+<span class="nx">premium_filter</span> <span class="op">=</span> <span class="nx">filters</span><span class="op">.</span><span class="fn">create</span>(<span class="nx">is_premium</span>)
+
+<span class="de">@bot.on_message</span>(<span class="nx">premium_filter</span> <span class="op">&</span> <span class="nx">filters</span><span class="op">.</span><span class="nx">text</span>)
+<span class="kw">async def</span> <span class="fn">premium_only</span>(<span class="pm">message</span>):
+    <span class="kw">await</span> <span class="nx">message</span><span class="op">.</span><span class="fn">reply</span>(<span class="st">"✨ محتوای ویژه کاربران Premium"</span>)</pre>
+    </div>
+  </section>
+
+  <!-- HANDLERS -->
+  <section class="content-section" id="handlers">
+    <span class="section-anchor" id="anchor-handlers"></span>
+    <div class="section-tag">Handlers</div>
+    <h2 class="section-title">Handler Classes</h2>
+    <p class="section-desc">علاوه بر decorator، می‌توانید با <code>bot.add_handler()</code> هندلر اضافه کنید.</p>
+    <div class="handler-grid">
+      <div class="handler-card">
+        <div class="handler-name">MessageHandler</div>
+        <div class="handler-desc">هندل پیام‌های معمولی</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">CommandHandler</div>
+        <div class="handler-desc">هندل دستورات — argument اول command string است</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">CallbackQueryHandler</div>
+        <div class="handler-desc">هندل callback query با <code>data_match</code> wildcard</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">EditedMessageHandler</div>
+        <div class="handler-desc">هندل پیام‌های ویرایش شده</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">ChannelPostHandler</div>
+        <div class="handler-desc">هندل پست‌های کانال</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">PreCheckoutQueryHandler</div>
+        <div class="handler-desc">هندل pre-checkout پرداخت</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">ShippingQueryHandler</div>
+        <div class="handler-desc">هندل shipping query</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">SuccessfulPaymentHandler</div>
+        <div class="handler-desc">هندل پرداخت موفق</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">MyChatMemberHandler</div>
+        <div class="handler-desc">هندل تغییر وضعیت ربات در چت</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">ChatMemberHandler</div>
+        <div class="handler-desc">هندل تغییر وضعیت اعضا</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">ChatJoinRequestHandler</div>
+        <div class="handler-desc">هندل درخواست عضویت</div>
+      </div>
+      <div class="handler-card">
+        <div class="handler-name">NewChatMembersHandler</div>
+        <div class="handler-desc">هندل ورود اعضای جدید</div>
+      </div>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy.handlers</span> <span class="kw">import</span> <span class="tp">CommandHandler</span><span class="op">,</span> <span class="tp">CallbackQueryHandler</span>
+
+<span class="kw">async def</span> <span class="fn">start_cb</span>(<span class="pm">message</span>):
+    <span class="kw">await</span> <span class="nx">message</span><span class="op">.</span><span class="fn">reply</span>(<span class="st">"شروع شد!"</span>)
+
+<span class="kw">async def</span> <span class="fn">btn_cb</span>(<span class="pm">callback</span>):
+    <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">anwser_callback_query</span>(<span class="nx">callback</span><span class="op">.</span><span class="nx">id</span><span class="op">,</span> text<span class="op">=</span><span class="st">"OK"</span>)
+
+<span class="nx">bot</span><span class="op">.</span><span class="fn">add_handler</span>(<span class="tp">CommandHandler</span>(<span class="st">"start"</span><span class="op">,</span> <span class="nx">start_cb</span>))
+<span class="nx">bot</span><span class="op">.</span><span class="fn">add_handler</span>(<span class="tp">CallbackQueryHandler</span>(<span class="nx">btn_cb</span><span class="op">,</span> data_match<span class="op">=</span><span class="st">"btn_*"</span>))</pre>
+    </div>
+  </section>
+
+  <!-- TYPES -->
+  <section class="content-section" id="types">
+    <span class="section-anchor" id="anchor-types"></span>
+    <div class="section-tag">Types</div>
+    <h2 class="section-title">Types Reference</h2>
+    <p class="section-desc">تمام تایپ‌های قابل import از <code>balepy.types</code>:</p>
+    <div class="types-grid">
+      <div class="type-card">
+        <div class="type-name">🧑 User</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">id</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">first_name</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">last_name</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">username</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">is_bot</span><span class="tf-type">bool</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">💬 Chat</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">id</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">type</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">title</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">username</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">📨 Message</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">message_id</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">chat_id</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">from_user</span><span class="tf-type">User</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">text</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">caption</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">photo, video, audio, ...</span><span class="tf-type">obj</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🔘 CallbackQuery</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">id</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">from_user</span><span class="tf-type">User</span></div>
+          <div class="type-field"><span class="tf-name">data_text</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">message</span><span class="tf-type">Message</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🖼 PhotoSize</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">file_id</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">width</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">height</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">file_size</span><span class="tf-type">int</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">📁 File</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">file_id</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">file_unique_id</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">file_path</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">file_size</span><span class="tf-type">int</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">💰 LabeledPrice</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">label</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">amount</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">to_dict()</span><span class="tf-type">method</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🎛 InlineKeyboardMarkup</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">inline_keyboard</span><span class="tf-type">list[list[Button]]</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🔲 InlineKeyboardButton</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">text</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">callback_data</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">url</span><span class="tf-type">str</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">⚙️ ChatPermissions</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">can_send_messages</span><span class="tf-type">bool</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">can_send_media_messages</span><span class="tf-type">bool</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">to_dict()</span><span class="tf-type">method</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🔗 InviteLink</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">invite_link</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">creator</span><span class="tf-type">User</span></div>
+          <div class="type-field"><span class="tf-name">expire_date</span><span class="tf-type">int</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">member_limit</span><span class="tf-type">int</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">📍 Location</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">latitude</span><span class="tf-type">float</span></div>
+          <div class="type-field"><span class="tf-name">longitude</span><span class="tf-type">float</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🎭 BotCommand</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">command</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">description</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">to_dict()</span><span class="tf-type">method</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🔄 Update</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">update_id</span><span class="tf-type">int</span></div>
+          <div class="type-field"><span class="tf-name">message</span><span class="tf-type">Message</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">callback_query</span><span class="tf-type">CallbackQuery</span><span class="tf-opt">opt</span></div>
+          <div class="type-field"><span class="tf-name">edited_message</span><span class="tf-type">Message</span><span class="tf-opt">opt</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-name">🌐 WebHookInfo</div>
+        <div class="type-fields">
+          <div class="type-field"><span class="tf-name">url</span><span class="tf-type">str</span></div>
+          <div class="type-field"><span class="tf-name">has_custom_certificate</span><span class="tf-type">bool</span></div>
+          <div class="type-field"><span class="tf-name">pending_update_count</span><span class="tf-type">int</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-wrap" style="margin-top:24px">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy.types</span> <span class="kw">import</span> (
+    <span class="tp">User</span><span class="op">,</span> <span class="tp">Chat</span><span class="op">,</span> <span class="tp">Message</span><span class="op">,</span> <span class="tp">CallbackQuery</span><span class="op">,</span>
+    <span class="tp">InlineKeyboardMarkup</span><span class="op">,</span> <span class="tp">InlineKeyboardButton</span><span class="op">,</span>
+    <span class="tp">LabeledPrice</span><span class="op">,</span> <span class="tp">BotCommand</span><span class="op">,</span> <span class="tp">ChatPermissions</span><span class="op">,</span>
+    <span class="tp">InputMediaPhoto</span><span class="op">,</span> <span class="tp">InputMediaVideo</span>
+)</pre>
+    </div>
+  </section>
+
+  <!-- ERRORS -->
+  <section class="content-section" id="errors">
+    <span class="section-anchor" id="anchor-errors"></span>
+    <div class="section-tag">Errors</div>
+    <h2 class="section-title">مدیریت خطا</h2>
+    <p class="section-desc">در صورت بروز خطا از API، <code>APIError</code> raise می‌شود.</p>
+    <div class="method-detail">
+      <div class="method-name"><span class="async-badge">class</span> APIError(Exception)</div>
+      <table class="params-table">
+        <thead><tr><th>attribute</th><th>تایپ</th><th>توضیح</th></tr></thead>
+        <tbody>
+          <tr><td class="param-name-cell">error_code</td><td class="param-type-cell">int</td><td>کد خطای HTTP</td></tr>
+          <tr><td class="param-name-cell">description</td><td class="param-type-cell">str</td><td>پیام خطا</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">python</span><button class="code-copy" onclick="copyCode(this)">کپی</button></div>
+      <pre><span class="kw">from</span> <span class="nx">balepy.errors</span> <span class="kw">import</span> <span class="tp">APIError</span>
+
+<span class="cm"># روش ۱: try/except در هر هندلر</span>
+<span class="de">@bot.on_message</span>(<span class="nx">filters</span><span class="op">.</span><span class="nx">text</span>)
+<span class="kw">async def</span> <span class="fn">handler</span>(<span class="pm">message</span>):
+    <span class="kw">try</span>:
+        <span class="kw">await</span> <span class="nx">bot</span><span class="op">.</span><span class="fn">send_message</span>(<span class="nx">message</span><span class="op">.</span><span class="nx">chat_id</span><span class="op">,</span> <span class="st">"سلام"</span>)
+    <span class="kw">except</span> <span class="tp">APIError</span> <span class="kw">as</span> <span class="nx">e</span>:
+        <span class="fn">print</span>(<span class="st">f"Error </span>{<span class="nx">e</span><span class="op">.</span><span class="nx">error_code</span>}<span class="st">: </span>{<span class="nx">e</span><span class="op">.</span><span class="nx">description</span>}<span class="st">"</span>)
+
+<span class="cm"># روش ۲: error handler جهانی</span>
+<span class="de">@bot.on_error</span>
+<span class="kw">async def</span> <span class="fn">global_error</span>(<span class="pm">error</span><span class="op">,</span> <span class="pm">update</span>):
+    <span class="fn">print</span>(<span class="st">f"Unhandled: </span>{<span class="nx">error</span>}<span class="st">"</span>)</pre>
+    </div>
+    <div class="callout callout-info">
+      <div class="callout-icon">⚡</div>
+      <div class="callout-text">Client به صورت خودکار تا <code>max_retry</code> بار تلاش مجدد می‌کند. این رفتار را با <code>max_retry=0</code> غیرفعال کنید.</div>
+    </div>
+
+    <div class="footnote">
+      balepy v1.5.1 | MIT License | Python 3.9+ | Bale Bot API
+    </div>
+  </section>
+
+</main>
+
+<!-- Back to Top -->
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="بازگشت به بالا">↑</button>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('main');
+  const scrollTop = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / total) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+  
+  // Back to top
+  const btn = document.getElementById('backTop');
+  if (scrollTop > 300) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+
+// Active nav link
+const sections = document.querySelectorAll('.content-section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`.nav-link[href="#${id}"]`);
+      if (link) {
+        link.classList.add('active');
+        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Section fade-in animation
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'none';
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.content-section').forEach(s => {
+  s.style.opacity = '0';
+  s.style.transform = 'translateY(16px)';
+  s.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  sectionObserver.observe(s);
+});
+
+// Copy code
+function copyCode(btn) {
+  const pre = btn.closest('.code-wrap').querySelector('pre');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ کپی شد';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'کپی'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Copy install command
+function copyInstall(el) {
+  navigator.clipboard.writeText('pip install -U balepy').then(() => {
+    const btn = document.getElementById('installCopyBtn');
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent = 'کپی', 2000);
+  });
+}
+
+// Search nav
+function filterNav(q) {
+  q = q.trim().toLowerCase();
+  navLinks.forEach(link => {
+    const match = link.textContent.toLowerCase().includes(q);
+    link.style.display = match ? '' : 'none';
+  });
+  document.querySelectorAll('.nav-section-title').forEach(t => {
+    t.style.display = q ? 'none' : '';
+  });
+}
+
+// Mobile sidebar
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+
+// Method card hover sound-free animation
+document.querySelectorAll('.method-card, .type-card, .handler-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.transition = 'all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  });
+});
+</script>
 </body>
 </html>
